@@ -1,0 +1,61 @@
+body {
+    background-image: url("/assets/images/registration.jpg");
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-attachment: fixed; 
+    margin: 0;   
+        
+    }
+    .registration-container {
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 40px;
+    width: 400px;
+    text-align: center;
+    }
+    .registration-container h2 {
+    margin-bottom: 20px;
+    }
+    .registration-container input[type="text"],
+    .registration-container input[type="email"],
+    .registration-container input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    }
+    .registration-container input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    }
+    .registration-container input[type="submit"]:hover {
+        background-color: green;
+    }
+    footer {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0);
+}

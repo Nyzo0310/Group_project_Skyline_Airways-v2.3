@@ -1,0 +1,183 @@
+
+ /* Absolute positioning for background image */
+  body {
+    background-image: url("/assets/images/registration.jpg");
+    background-color: #f0f0f0;
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-attachment: fixed; 
+    margin: 0; 
+}
+
+/* Centering the container */
+.container {
+    font-family: Arial, sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%; /* Adjust width as needed */
+    max-width: 400px; /* Limit maximum width */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* Adjust opacity */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* Initially hidden */
+    animation: fadeIn 0.5s ease forwards; /* Fade-in animation */
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 10px;
+    background-color: rgba(0, 0, 0, 1);
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensure the header stays on top of other content */
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img {
+    height: 50px;
+    margin-right: 15px;
+  }
+  
+  .title h1 {
+    margin: 0;
+    color: #fff;
+    font-size: 30px;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+  }
+  
+  nav ul li {
+    display: inline;
+    margin-right: 20px;
+  }
+  
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+h1, h2 {
+    text-align: center;
+}
+form {
+    margin-top: 20px;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type="submit"] {
+    background-color: #0056b3;;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+/* Style for back button */
+.back-button {
+    text-align: center;
+    margin-top: 20px;
+}
+.back-button a {
+    background-color: #0056b3;;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    display: inline-block;
+}
+.back-button a:hover {
+    background-color: #45a049;
+} 
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3s);
+    background-color: rgba(255, 255, 255, 0);
+} 
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0);
+}
+/* Notification style */
+.notification {
+    text-align: center;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+    margin-top: 10px;
+    display: none;
+    animation: fadein 0.5s; /* Add animation */
+}
+
+/* Animation */
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
