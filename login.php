@@ -39,14 +39,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } else {
         // Check if the user is a regular user
-        $stmt = $conn->prepare("SELECT * FROM logindata WHERE Email = ?");
+        $stmt = $conn->prepare("SELECT * FROM logindata WHERE reg_email = ?");
         $stmt->bind_param("s", $username);
         $stmt->execute();
         $regular_result = $stmt->get_result();
 
         if ($regular_result->num_rows == 1) {
             $regular_row = $regular_result->fetch_assoc();
-            $regular_stored_password = $regular_row['password'];
+            $regular_stored_password = $regular_row['reg_pass'];
             if (password_verify($password, $regular_stored_password)) {
                 $_SESSION['username'] = $username;
                 header("Location: index.php");
@@ -67,6 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
 <title>Skyline - Login</title>
 <link rel="icon" href="./assets/images/favicon.jpg">
 <link rel="stylesheet" href="./css/login.css">
@@ -81,8 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <nav>
         <ul>
-            <li><a href="dashboard.php">Dashboard</a></li>
-            <li><a href="index.php">Home</a></li>
+            <li><a href="index.php">Dashboard</a></li>>
             <li><a href="#">Flights</a></li>
             <li><a href="#">Analytics</a></li>
             <?php

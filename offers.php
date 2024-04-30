@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/offers.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
   <link rel="icon" href="./assets/images/favicon.jpg">
   <title>Skyline - Travel offers</title>
 </head>
@@ -60,7 +61,7 @@
           <h2>Tacloban: Leyte Landing Memorial</h2>
           <img src="./assets/images/tacloban.jpg" alt="Tacloban">
           <p>Explore the historical significance of Tacloban, commemorating General Douglas MacArthur's return to the Philippines during World War II.</p>
-          <button class="book-now"  onclick="redirectToIndex('Davao')" data-destination="Tacloban">Book Now</button>
+          <button class="book-now"  onclick="redirectToIndex('Tacloban')" data-destination="Tacloban">Book Now</button>
         </div>
 
         <div class="Iloilo offer">

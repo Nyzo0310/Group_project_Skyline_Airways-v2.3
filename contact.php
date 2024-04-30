@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
     <title>Skyline - Contact</title>
     <link rel="icon" href="./assets/images/favicon.jpg">
     <link rel="stylesheet" href="./css/contact.css">
@@ -17,7 +18,7 @@
     </div>
     <nav>
         <ul>
-            <li><a href="#">Flights</a></li>
+            <li><a href="flights.php">Flights</a></li>
             <li><a href="#">Analytics</a></li>
         </ul>
     </nav>

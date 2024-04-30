@@ -1,42 +1,254 @@
 body {
-    background-image: url("/assets/images/registration.jpg");
+    background-image: url("../assets/images/registration.jpg");
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     background-size: cover; 
     background-repeat: no-repeat; 
     background-position: center;
     background-attachment: fixed; 
-    margin: 0;   
-        
-    }
-    .registration-container {
-    
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative; /* Add position relative */
+}
+
+/* Header Styles */
+header {
+    position: fixed;
+    font-style: normal;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
     position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 15px;
+}
+
+.title h1 {
+    font-size: 26px;
+    margin: 0;
+    color: #fff;
+    font-size: 20px;
+    /* justify-content: left; Remove justify-content */
+    /* width: 300px; Remove fixed width */
+    font-family: 'Montserrat', sans-serif; /* Use the Montserrat font */
+    font-weight: 500; /* Adjust font weight as needed */
+    margin-right: 20px; /* Add margin to create space between logo and title */
+}
+  
+nav {
+    max-width: 1400px; /* Adjust the max-width value as needed */
+    width: 100%;
+    padding: 2rem 1.5rem; /* Increase the padding to add more space */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Montserrat', sans-serif; /* Use the Montserrat font */
+    font-weight: 500; /* Adjust font weight as needed */
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-size: 16px; /* Adjust the font size as needed */
+    display: flex;
+    margin-left: auto; /* Align the nav ul content to the right */
+}
+
+nav ul li:not(:last-child) {
+    margin-right: 5px; /* Add margin between list items */
+}
+
+nav ul li a {
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+/* Add this to style the dropdown button */
+nav .dropdown .dropbtn {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    cursor: pointer; /* Change cursor to pointer */
+}
+
+nav .dropdown .dropbtn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background-color: transparent;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s;
+}
+
+.dropbtn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #333; /* Background color of the dropdown */
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.dropdown-content a {
+    color: white;
+    padding: 10px 0;
+    text-decoration: none;
+    display: block;
+    transition: color 0.3s;
+}
+
+.dropdown-content a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown.active .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a.logout {
+    color: red; /* Color for logout link */
+}
+/* End of Header Styles */
+
+main {
+    position: fixed;
+    top: 70px; /* Adjust according to the header height */
+    bottom: 120px; /* Adjust according to the footer height */
+    width: 100%;
+    box-sizing: border-box;
+    overflow-y: auto; /* Add scrollbars if needed */
+}
+
+.registration-container {
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-    background-color: rgba(255, 255, 255, 0.4);
     padding: 40px;
-    width: 400px;
+    width: 890px; /* Increased width to accommodate three columns */
     text-align: center;
-    }
-    .registration-container h2 {
-    margin-bottom: 20px;
-    }
-    .registration-container input[type="text"],
-    .registration-container input[type="email"],
-    .registration-container input[type="password"] {
-    width: calc(100% - 20px);
+    height: 550px;
+    z-index: 1;
+}
+
+.registration-container h2 {
+    margin-bottom: 25px;
+    margin-top: 5px;
+  
+}
+
+/* Set up three-column layout */
+.registration-container .form-row {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping */
+    justify-content: space-between; /* Spread items evenly */
+}
+
+.registration-container .form-column {
+    flex-basis: calc(33.33% - 10px); /* Set column width */
+    margin-bottom: 20px; /* Adjust spacing between columns */
+}
+
+/* Label styles */
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    text-align: left;
+    margin-left: 5px;
+}
+.form-column label1 {
+    margin-top: 10px;
+    display: block; /* Ensure each label is on a new line */
+    font-weight: bold; /* Make the text bold */
+    margin-bottom: 5px; /* Add some space below each label */
+    text-align: left;
+    margin-left: 15px;
+ 
+}
+
+.form-column select {
+    width: 100%; /* Ensure the select elements take up the full width */
+    padding: 8px; /* Add padding to the selects */
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 5px; /* Add some border radius for rounded corners */
+    margin-top: 5px; /* Add space above each select */
+}
+
+
+/* Input styles */
+.registration-container input[type="text"],
+.registration-container input[type="email"],
+.registration-container input[type="password"],
+.registration-container input[type="file"],
+.registration-container input[type="submit"],
+.registration-container select {
+    width: 90%; /* Adjusted width to fit three columns */
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    }
-    .registration-container input[type="submit"] {
-    width: 100%;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+/* Submit button styles */
+.registration-container input[type="submit"] {
+    width: 50%;
     padding: 10px;
     background-color: #007bff;
     color: #fff;
@@ -44,18 +256,66 @@ body {
     border-radius: 30px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    }
-    .registration-container input[type="submit"]:hover {
-        background-color: green;
-    }
-    footer {
+    margin-top: 40px;
+}
+
+.registration-container input[type="submit"]:hover {
+    background-color: green;
+}
+
+/* File input button styles */
+.registration-container input[type="file"]::-webkit-file-upload-button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.registration-container input[type="file"]::-webkit-file-upload-button:hover {
+    background-color: green;
+}
+
+/* Optional: Add additional styling for the container divs */
+.col-md-12 {
+    margin-bottom: 5px; /* Adjust spacing between rows */
+}
+
+/* Option styles */
+select option {
+    background-color: #fff; /* Background color */
+    color: #333; /* Text color */
+}
+
+
+/* Style for the success notification */
+#notification {
+    display: none;
+    color: green;
+    font-weight: bold;
+    background-color: lightgreen;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+/* Keyframes for fadeIn animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+footer {
     position: fixed;
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 85%;
+    left: 0;
+    width: 100%;
     color: #fff;
     padding: 20px;
     text-align: center;
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2;
 }

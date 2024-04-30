@@ -18,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/flights.css">
     <link rel="icon" href="./assets/images/favicon.jpg">
     <title>Skyline - Flight Search Results</title>
@@ -96,8 +97,10 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 }
                 echo "</table>";
             } else {
-                echo "No flights found.";
+                echo "<p>No flights found.</p>";
             }
+        } else {
+            echo "<p>No search performed yet.</p>";
         }
     } else {
         echo "Connection failed: " . $conn->connect_error;
@@ -109,18 +112,39 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
 </main>
 
 <footer>
-    <p>&copy; <?php echo date("Y"); ?> Skyline Airways PH</p>
+    <div class="payment-methods">
+        <h3>Available Payment Methods</h3>
+        <ul>
+            <li>
+                <img src="./assets/images/gcash" alt="Gcash">
+                <span>Gcash</span>
+            </li>
+            <li>
+                <img src="./assets/images/paypal" alt="PayPal">
+                <span>PayPal</span>
+            </li>
+            <li>
+                <img src="./assets/images/mastercard.jpg" alt="Mastercard">
+                <span>Mastercard</span>
+            </li>
+            
+        </ul>
+    </div>
 </footer>
-<script>
 
+<script>
+// Define bookNowButtons and select buttons with class 'book-now-button'
+const bookNowButtons = document.querySelectorAll('.book-now-button');
+
+// Add event listeners to each button
 bookNowButtons.forEach(button => {
-    button.addEventListener('click', function() {;
-      destinationInput.value = destination;
-      label.classList.add('label-on-top');
-      window.location.href = `index.php?destination=${destination}#searchFlight1`;
+    button.addEventListener('click', function() {
+        // Your event listener logic goes here
     });
-  });
-  
+});
+
+
   </script>
+
 </body>
 </html>
