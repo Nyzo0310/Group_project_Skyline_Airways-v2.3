@@ -18,7 +18,6 @@
     </div>
     <nav>
         <ul>
-
             <li><a href="#">Ongoing Flights</a></li>
             <li><a href="#">Analytics</a></li>
             <?php
@@ -41,39 +40,39 @@
     </nav>
 </header> 
 <main>
-    <div class="content">
-        <!-- Your admin dashboard content goes here -->
-    </div>
-</main>      
-<script>
-// JavaScript for dropdown functionality
-document.addEventListener("DOMContentLoaded", function() {
-    var dropdowns = document.getElementsByClassName("dropdown");
-    for (var i = 0; i < dropdowns.length; i++) {
-        dropdowns[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var dropdownContent = this.getElementsByClassName("dropdown-content")[0];
-            if (dropdownContent.style.display === "block") {
-                dropdownContent.style.display = "none";
-            } else {
-                dropdownContent.style.display = "block";
-            }
-        });
+    <?php
+    include './config/database.php';
+
+    // Define your SQL query
+    $sql = "SELECT * FROM logindata"; // Change 'your_table' to your actual table name
+
+    // Execute the query
+    $result = $conn->query($sql);
+
+    // Check if there are rows returned
+    if ($result->num_rows > 0) {
+        // Output table header
+        echo "<table border='1'>";
+        echo "<tr><th>ID</th><th>First Name</th><th>Last Name</th></tr>"; // Corrected column names
+
+        // Output data of each row
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . $row["reg_id"] . "</td>"; // Replace 'id' with your actual column names
+            echo "<td>" . $row["reg_firstname"] . "</td>"; // Replace 'name' with your actual column names
+            echo "<td>" . $row["reg_lastname"] . "</td>"; // Replace 'email' with your actual column names
+            echo "</tr>";
+        }
+
+        // Close table
+        echo "</table>";
+    } else {
+        // No records found
+        echo "0 results";
     }
-});
-document.addEventListener("DOMContentLoaded", function() {
-    // Add click event listener to the logout link
-    document.querySelector('a.logout').addEventListener('click', function(event) {
-        // Prevent default link behavior
-        event.preventDefault(); 
-        
-        // Display notification
-        alert("You have been logged out successfully!");
-        
-        // Redirect to logout.php after the alert is shown
-        window.location.href = "logout.php";
-    });
-});
-</script>
+    ?>
+   
+</main>      
+<script src="./js/adminfunct.js"></script>
 </body>
 </html>
