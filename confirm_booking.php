@@ -20,8 +20,7 @@ $ticket_price = $_POST['price'];
 $price = $ticket_price * $passenger_count;
 
 // Initialize total price
-$total_price = 0;
-
+$total_price = $price;
 
 include_once './config/database.php';
 ?>
@@ -202,6 +201,7 @@ include_once './config/database.php';
         <div class="payment-method">
             <img src="./assets/images/paypal" alt="PayPal Logo" class="payment-logo">
             <h1>PayPal Payment</h1>
+            <p>Amount: <?php echo $total_price; ?></p>
             <p>Email or mobile number</p>
             <input type="text" id="paypal-email-or-mobile" placeholder="Enter your email or mobile number" required>
             <p>Password</p>
@@ -218,6 +218,7 @@ include_once './config/database.php';
         <div class="payment-method">
             <img src="./assets/images/mastercard.jpg" alt="Mastercard Logo" class="payment-logo">
             <h1>Mastercard Payment</h1>
+            <p>Amount: <?php echo $total_price; ?></p>
             <p>Enter your Mastercard credentials</p>
             <input type="text" id="mastercard-username" placeholder="Username" required>
             <input type="password" id="mastercard-password" placeholder="Password" required>

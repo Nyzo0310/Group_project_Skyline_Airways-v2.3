@@ -1,3 +1,48 @@
+//Location
+function display_province(regCode) {
+    $.ajax({
+        url: './Models/ph_address.php',
+        type: 'POST',
+        data: {
+            'type': 'region',
+            'post_code': regCode
+        },
+        success: function (response) {
+            $('#inp_province').html(response);
+        }
+    });
+
+}
+
+function display_citymun(provCode) {
+    $.ajax({
+        url: './Models/ph_address.php',
+        type: 'POST',
+        data: {
+            'type': 'province',
+            'post_code': provCode
+        },
+        success: function (response) {
+            $('#inp_citymun').html(response);
+        }
+    });
+
+}
+
+function display_brgy(citymunCode) {
+    $.ajax({
+        url: './Models/ph_address.php',
+        type: 'POST',
+        data: {
+            'type': 'citymun',
+            'post_code': citymunCode
+        },
+        success: function (response) {
+            $('#inp_brgy').html(response);
+        }
+    });
+
+}
 // Function to validate password
 function validatePassword() {
     var password = document.getElementById("password").value;
@@ -25,16 +70,18 @@ function previewImage(event) {
     reader.readAsDataURL(file);
 }
 
-// Function to show the notification
-function showNotification(message) {
+// Function to show notifications
+function showNotification(message, isError) {
     var notification = document.getElementById("notification");
-    notification.innerHTML = message; 
+    notification.innerHTML = message;
     notification.style.display = "block";
-    setTimeout(function(){
+    notification.style.backgroundColor = isError ? "#ff6666" : "#66ff66"; // Red for errors, green for success
+    setTimeout(function () {
         hideNotification();
-    }, 3000); 
+    }, 3000);
 }
 
+// Function to hide notifications
 function hideNotification() {
     var notification = document.getElementById("notification");
     if (notification) {
@@ -42,12 +89,7 @@ function hideNotification() {
     }
 }
 
-function submitForm() {
- 
-    hideNotification();
-    return true;
-}
-
+// Function to hide notification on click
 function hideNotificationOnClick() {
     hideNotification(); 
 }
@@ -57,4 +99,51 @@ inputFields.forEach(function(input) {
     input.addEventListener('click', hideNotificationOnClick);
 });
 
+// Function to submit form
+function submitForm() {
+    hideNotification();
+    return true;
+}
+
+// Document ready function
+$(document).ready(function () {
+    $('#registrationForm').submit(function (e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        $.ajax({
+            url: 'regFunction.php',
+            type: 'POST',
+            data: formData,
+            success: function (data) {
+                console.log('Received data:', data); // Log the received data
+                try {
+                    var response = JSON.parse(data);
+                    if (response.success) {
+                        // Registration successful
+                        showNotification(response.message, false); // Pass false for success
+                        setTimeout(function() {
+                            // Redirect to registration page without any error parameter
+                            window.location.href = 'registration.php';
+                        }, 3000); // Wait for 3 seconds before redirecting (adjust as needed)
+                    } else {
+                        // Registration failed, display error message
+                        showNotification(response.message, true); // Pass true for error
+                    }
+                } catch (error) {
+                    // Log the error and response for debugging
+                    console.error('Error parsing JSON response:', error);
+                    console.log('Response from server:', data);
+                    // Display a generic error message
+                    alert('An error occurred. Please try again later.');
+                }
+            },
+            error: function () {
+                alert('Error occurred. Please try again later.');
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    });
+});
 

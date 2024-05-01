@@ -306,6 +306,188 @@ main {
     margin-bottom: 20px;
     height: 150px;
 }
+.payment-method h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.payment-method p {
+    margin-bottom: 10px;
+}
+
+.payment-method input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.payment-method button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.payment-method button:hover {
+    background-color: #0056b3;
+}
+/* GCash Pop-up Styles */
+#gcash-popup .popup-content {
+    background-color: #008be7; /* Update background color */
+    color: #fff; /* Update text color */
+    max-width: 400px; /* Adjust maximum width */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#gcash-popup .payment-method {
+    text-align: center;
+}
+
+#gcash-popup .payment-logo {
+    width: 200px; /* Adjust logo size */
+    height: auto; /* Allow height to adjust automatically */
+    margin-bottom: 20px;
+}
+
+#gcash-popup h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#gcash-popup p {
+    margin-bottom: 10px;
+}
+
+#gcash-popup input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#gcash-popup button {
+    padding: 10px 20px;
+    background-color: #007bff; /* Update button color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#gcash-popup button:hover {
+    background-color: #0056b3; /* Darker color on hover */
+}
+
+/* PayPal Pop-up Styles */
+#paypal-popup .popup-content {
+    background-color: #007bff; /* Update background color */
+    color: #fff; /* Update text color */
+    width: 500px; /* Adjust width to your preference */
+    max-width: 90%; /* Adjust maximum width if needed */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#paypal-popup .payment-method {
+    text-align: center;
+}
+
+#paypal-popup .payment-logo {
+    width: 200px; /* Adjust logo size */
+    height: auto; /* Allow height to adjust automatically */
+    margin-bottom: 20px;
+}
+
+#paypal-popup h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#paypal-popup p {
+    margin-bottom: 10px;
+}
+
+#paypal-popup input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#paypal-popup button {
+    padding: 10px 20px;
+    background-color: #007bff; /* Update button color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#paypal-popup button:hover {
+    background-color: #0056b3; /* Darker color on hover */
+}
+
+
+/* Mastercard Pop-up Styles */
+#mastercard-popup .popup-content {
+    background-color: #363636; /* Update background color */
+    color: #fff; /* Update text color */
+    max-width: 400px; /* Adjust maximum width */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#mastercard-popup .payment-method {
+    text-align: center;
+}
+
+#mastercard-popup .payment-logo {
+    width: 200px; /* Adjust logo size */
+    height: auto; /* Allow height to adjust automatically */
+    margin-bottom: 20px;
+}
+
+#mastercard-popup h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#mastercard-popup p {
+    margin-bottom: 10px;
+}
+
+#mastercard-popup input[type="text"],
+#mastercard-popup input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#mastercard-popup button {
+    padding: 10px 20px;
+    background-color: #007bff; /* Update button color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#mastercard-popup button:hover {
+    background-color: #0056b3; /* Darker color on hover */
+}
 
 /* Input Field Styles */
 input[type="text"],

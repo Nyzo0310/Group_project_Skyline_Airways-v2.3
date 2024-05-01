@@ -17,10 +17,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $last_name = $_POST["last_name"];
         $email = $_POST["email"];
         $password = $_POST["password"]; // Remember to hash the password
+        $confirm_password = $_POST["confirm_password"];
         $region = $_POST["inp_region"];
         $province = $_POST["inp_province"];
         $citymun = $_POST["inp_citymun"];
         $barangay = $_POST["inp_brgy"];
+
+        // Initialize response array
+        $response = array();
+
+        // Check if password and confirm password match
+        if ($password !== $confirm_password) {
+            $response['success'] = false;
+            $response['message'] = "Passwords do not match.";
+            echo json_encode($response);
+            exit();
+        }
+
+        // Check if email already exists
+        $check_email_sql = "SELECT reg_email FROM logindata WHERE reg_email = ?";
+        $stmt_check_email = $conn->prepare($check_email_sql);
+        $stmt_check_email->bind_param("s", $email);
+        $stmt_check_email->execute();
+        $stmt_check_email->store_result();
+        if ($stmt_check_email->num_rows > 0) {
+            $response['success'] = false;
+            $response['message'] = "Email already exists.";
+            echo json_encode($response);
+            exit();
+        }
 
         // Escape special characters to prevent SQL injection
         $escaped_first_name = mysqli_real_escape_string($conn, $first_name);
@@ -47,11 +72,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Execute statement
         if ($stmt->execute()) {
             // Insert successful
-            header("Location: registration.php?success=1");
+            $response['success'] = true;
+            $response['message'] = "Registration successful!";
+            echo json_encode($response);
             exit();
         } else {
             // Insert failed
-            header("Location: registration.php?error=1");
+            $response['success'] = false;
+            $response['message'] = "Error occurred while registering. Please try again later.";
+            echo json_encode($response);
             exit();
         }
 
@@ -59,11 +88,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->close();
     } else {
         // File upload failed
-        echo "Error uploading file";
+        $response['success'] = false;
+        $response['message'] = "Error uploading file";
+        echo json_encode($response);
+        exit();
     }
 
     // Close database connection
     $conn->close();
 }
-
 ?>

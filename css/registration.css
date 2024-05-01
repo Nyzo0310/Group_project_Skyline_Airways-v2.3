@@ -292,15 +292,40 @@ select option {
 
 /* Style for the success notification */
 #notification {
-    display: none;
-    color: green;
-    font-weight: bold;
-    background-color: lightgreen;
+    position: absolute;
+    bottom: 210px; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 200px;
     padding: 10px;
     border-radius: 5px;
-    margin-top: 10px;
-    animation: fadeIn 0.5s ease-in-out forwards;
+    text-align: center;
+    color:  black;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    z-index: 9999;
+    display: none;
+    background-color: rgba(8, 97, 8, 0.7); /* Darker green color */
+    opacity: 1; /* Increase opacity for better visibility */
 }
+/* Style for the success notification */
+#notification.success {
+    display: block;
+    background-color: rgba(0, 128, 0, 0.7); /* Adjust the alpha value to lower brightness */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    z-index: 9999;
+}
+
+#notification.success p {
+    margin: 0;
+}
+
 
 /* Keyframes for fadeIn animation */
 @keyframes fadeIn {

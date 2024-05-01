@@ -8,6 +8,7 @@
     <link rel="icon" href="./assets/images/favicon.jpg">
     <link rel="stylesheet" href="./css/registration.css">
 </head>
+
 <header>
     <div class="logo">
         <img src="./assets/images/logo.jpg" alt="Airline Logo">
@@ -23,7 +24,9 @@
         </ul>
     </nav>
 </header>
+
 <body>
+
 <main>
 <div class="registration-container">
     <h2 style="text-align: left;">Registration</h2>
@@ -110,71 +113,59 @@
     <input type="submit" value="Register" onclick="return validatePassword()"><br> 
 
     <!-- Error message -->
-    <?php if(isset($errorMessage)): ?>
-        <p style="color: red;"><?php echo $errorMessage; ?></p>
-    <?php endif; ?>
-            
-    <!-- Success notification -->
-    <?php if(!empty($successMessage)): ?>
-        <div id="notification" style="display: block;">
-            <p style="color: green;"><?php echo $successMessage; ?></p>
+    <?php if(isset($_GET['error'])): ?>
+        <div id="notification" style="display: block; background-color: #ff6666; color: white; padding: 10px;">
+            <?php
+            $errorMessage = "";
+            switch ($_GET['error']) {
+                case 'password_mismatch':
+                    $errorMessage = "Passwords do not match.";
+                    break;
+                case 'email_exists':
+                    $errorMessage = "Email already exists.";
+                    break;
+                case 'insert_failed':
+                    $errorMessage = "Error occurred while registering. Please try again later.";
+                    break;
+                // Add more cases if needed
+                default:
+                    $errorMessage = "Unknown error occurred.";
+            }
+            ?>
+            <p><?php echo $errorMessage; ?></p>
         </div>
     <?php endif; ?>
+
+    <?php
+    // Check for success parameter
+    if (isset($_GET['success']) && $_GET['success'] == 1) {
+        $successMessage = "Registration successful!";
+    }
+    ?>
+       
+    <!-- Success notification -->
+    <?php if(isset($_GET['success']) && $_GET['success'] == 1): ?>
+        <div id="notification" class="success" style="display: block;">
+            <p>Registration successful!</p>
+        </div>
+        <script>
+            // Redirect to registration page without any error parameter
+            window.location.href = 'registration.php';
+        </script>
+    <?php endif; ?>
+
 </form>
 </div>
-<script>
-function display_province(regCode) {
-    $.ajax({
-        url: './Models/ph_address.php',
-        type: 'POST',
-        data: {
-            'type': 'region',
-            'post_code': regCode
-        },
-        success: function (response) {
-            $('#inp_province').html(response);
-        }
-    });
-
-}
-
-function display_citymun(provCode) {
-    $.ajax({
-        url: './Models/ph_address.php',
-        type: 'POST',
-        data: {
-            'type': 'province',
-            'post_code': provCode
-        },
-        success: function (response) {
-            $('#inp_citymun').html(response);
-        }
-    });
-
-}
-
-function display_brgy(citymunCode) {
-    $.ajax({
-        url: './Models/ph_address.php',
-        type: 'POST',
-        data: {
-            'type': 'citymun',
-            'post_code': citymunCode
-        },
-        success: function (response) {
-            $('#inp_brgy').html(response);
-        }
-    });
-
-}
-</script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <script src="./js/registration.js"></script>
 </main>
 
 <footer>
     <p>&copy; 2024 Skyline Airways PH. All rights reserved.</p>
-</footer>
+</footer>>
+
+<!-- Notification div -->
+<div id="notification" style="display: none; background-color: #ff6666; color: white; padding: 10px;"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="./js/registration.js"></script>
 </body>
 </html>
