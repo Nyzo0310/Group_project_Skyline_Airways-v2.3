@@ -51,7 +51,7 @@ if ($stmt_main_passenger->execute() === TRUE) {
         }
     }
     echo "Passenger details inserted successfully.";
-    header("Location: index.php");
+    header("Location: pay_success.php");
 } else {
     echo "Error: " . $stmt_main_passenger->error;
 }

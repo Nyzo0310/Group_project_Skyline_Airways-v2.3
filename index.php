@@ -50,7 +50,7 @@ $destination = isset($_GET['destination']) ? htmlspecialchars($_GET['destination
 
   <main>
     <section class="section__container header__container">
-        <h1 class="section__header">Your Trusted<br />Travel Companion</h1>
+        <h1 class="section__header">Skyline Airways<br />Your Trusted Travel Companion</h1>
         <img id="searchFlight1" src="./assets/images/header.jpg" alt="header" />
     </section>
 

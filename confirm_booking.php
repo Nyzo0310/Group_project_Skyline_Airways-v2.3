@@ -16,11 +16,11 @@ if (!isset($_POST['passengers'])) {
 
 // Retrieve number of passengers from the form
 $passenger_count = $_POST['passengers'];
-$ticket_price = $_POST['price'];
-$price = $ticket_price * $passenger_count;
+$ticket_price = $_POST['price']; // Assuming this is the base ticket price
+$total_price = $ticket_price * $passenger_count; // Initialize total price with base ticket price
 
-// Initialize total price
-$total_price = $price;
+// Initialize total price with the same value as the base ticket price
+$price = $total_price;
 
 include_once './config/database.php';
 ?>
@@ -62,92 +62,141 @@ include_once './config/database.php';
     </nav>
 </header> 
 
-<main class="<?php echo $main_class; ?>">
+<main>
     <div class="passenger-title-container">
         <h2 class="passenger_title">Passenger Details</h2>
     </div>
     <div class="passenger-details">
-    <form action="insertdata.php" method= "POST">
-    <!-- Passenger Details -->
-    <?php
-    // Loop through each passenger
-    for ($i = 1; $i <= $passenger_count; $i++) {
-        // Passenger details inputs
-        echo '<div class="passenger-info">';
-        echo '<h3>Passenger ' . $i . '</h3>';
-        echo '<label for="first_name_' . $i . '">First Name:</label>';
-        echo '<input type="text" id="first_name_' . $i . '" name="first_name_' . $i . '" required>';
-        echo '<label for="last_name_' . $i . '">Last Name:</label>';
-        echo '<input type="text" id="last_name_' . $i . '" name="last_name_' . $i . '" required>';
-
-
+        <form action="insertdata.php" method="POST"> <!-- Form for submitting passenger data -->
+            <!-- Passenger Details -->
+            <?php
+            // Loop through each passenger
+            for ($i = 1; $i <= $passenger_count; $i++) {
+            // Passenger details inputs
+            echo '<div class="passenger-info">';
+            echo '<h3>Passenger ' . $i . '</h3>';
+            echo '<label for="first_name_' . $i . '">First Name:</label>';
+            echo '<input type="text" id="first_name_' . $i . '" name="first_name_' . $i . '" required>';
+            echo '<label for="last_name_' . $i . '">Last Name:</label>';
+            echo '<input type="text" id="last_name_' . $i . '" name="last_name_' . $i . '" required>';
             echo '<label for="email_' . $i . '">Email:</label>';
             echo '<input type="email" id="email_' . $i . '" name="email_' . $i . '" required>';
             echo '<label for="contact_number_' . $i . '">Contact Number:</label>';
             echo '<input type="text" id="contact_number_' . $i . '" name="contact_number_' . $i . '" required>';
+            echo '<label for="dob_' . $i . '">Date of Birth:</label>';
+            echo '<input type="date" id="dob_' . $i . '" name="dob_' . $i . '" required>';
+            // Seat Selection for each passenger
+
+            echo '<div class="flight-seats">';
+            echo '<label for="seat_' . $i . '">Select Seat:</label>';
+            echo '<select id="seat_' . $i . '" name="seat_' . $i . '">';
+            echo '<option value="Window Seat">Window Seat</option>';
+            echo '<option value="Aisle Seat">Aisle Seat</option>';
+            echo '<option value="Middle Seat">Middle Seat</option>';
+            echo '</select>';
+            echo '</div>';
+
+
+            echo '<div class="flight-accommodations">';
+            echo '<label for="accommodation_' . $i . '">Select Accommodation:</label>';
+            echo '<select id="accommodation_' . $i . '" name="accommodation_' . $i . '" onchange="calculateTotalPrice()">';
+            echo '<option value="Economy Glass">Economy Glass</option>';
+            echo '<option value="Business Glass">Business Glass</option>';
+            echo '<option value="First Glass">First Glass</option>';
+            echo '</select>';
+            echo '</div>';
+
+        }
+        ?>
         
+       <!-- Total Price -->
+<div class="total-price" id="total_price">
+    <!-- This will be updated dynamically by JavaScript -->
+    <h3>Total Price: ₱<span id="displayed_total_price"><?php echo $price; ?></span></h3>
+</div>
 
-        echo '<label for="dob_' . $i . '">Date of Birth:</label>';
-        echo '<input type="date" id="dob_' . $i . '" name="dob_' . $i . '" required>';
+<!-- Hidden Input Field for Total Price -->
+<input type="hidden" id="total_cost" name="total_cost" value="<?php echo $price; ?>">
 
-        // Seat Selection for each passenger
-        echo '<div class="flight-seats">';
-        echo '<label for="seat_' . $i . '">Select Seat:</label>';
-        echo '<select id="seat_' . $i . '" name="seat_' . $i . '">';
-        echo '<option value="window">Window Seat</option>';
-        echo '<option value="aisle">Aisle Seat</option>';
-        echo '<option value="middle">Middle Seat</option>';
-        echo '</select>';
-        echo '</div>';
+        <!-- Discount Message -->
+        <div id="discount_message">
 
-        // Accommodation Selection for each passenger
-        echo '<div class="flight-accommodations">';
-        echo '<label for="accommodation_' . $i . '">Select Accommodation:</label>';
-        echo '<select id="accommodation_' . $i . '" name="accommodation_' . $i . '" onchange="calculateTotalPrice()">';
-        echo '<option value="economy">Economy Class</option>';
-        echo '<option value="business">Business Class</option>';
-        echo '<option value="first">First Class</option>';
-        echo '</select>';
-        echo '</div>';
+        </div>
+
+    <script>
+    // Function to calculate total price based on accommodation selection
+   // Define a global variable to store the total cost
+var totalCost = 0;
+var discountApplied = false;
+
+// Function to calculate total price based on accommodation selection
+function calculateTotalPrice() {
+    totalCost = 0;
+    discountApplied = false;
+    <?php
+    for ($i = 1; $i <= $passenger_count; $i++) {
+        echo 'var selectedAccommodation = document.getElementById("accommodation_' . $i . '").value;';
+        echo 'var originalPrice = ' . $ticket_price . ';';
+        echo 'if (selectedAccommodation === "Economy Glass") {';
+        echo 'totalCost += originalPrice;';
+        echo '} else if (selectedAccommodation === "Business Glass") {';
+        echo 'totalCost += originalPrice * 1.5;';
+        echo '} else if (selectedAccommodation === "First Glass") {';
+        echo 'totalCost += originalPrice * 2;';
+        echo '}';
+        // Check if passenger age is 60 or above
+        echo 'var dob = new Date(document.getElementById("dob_' . $i . '").value);';
+        echo 'var today = new Date();';
+        echo 'var age = today.getFullYear() - dob.getFullYear();';
+        echo 'if (today.getMonth() < dob.getMonth() || (today.getMonth() === dob.getMonth() && today.getDate() < dob.getDate())) {';
+        echo 'age--;';
+        echo '}';
+        // Apply discount if passenger age is 60 or above
+        echo 'if (age >= 60) {';
+        echo 'totalCost -= originalPrice * 0.1;';
+        echo 'discountApplied = true;';
+        echo '}';
     }
     ?>
 
-    <!-- Total Price -->
-<div class="total-price" id="total_price">
-    <h3>Total Price: ₱<?php echo $price; ?></h3>
-</div>
-<input type="hidden" id="total_cost" name="total_cost" value="<?php echo $price; ?>">
+    // Update the displayed total price
+    document.getElementById("displayed_total_price").textContent = totalCost.toFixed(2);
 
+    // Set the total price in the hidden input field
+    document.getElementById("total_cost").value = totalCost.toFixed(2);
 
-</form>
+     // discount message
+     if (discountApplied) {
+            document.getElementById("discount_message").innerHTML = '<p style="color: green; font-weight: bold; text-align:center;">10% Discount applied for passengers aged 60 or above.</p>';
 
-<script>
-    // Function to calculate total price based on accommodation selection
-    function calculateTotalPrice() {
-        var totalCost = 0;
-        <?php
-        // Calculate total cost based on accommodation selection using PHP
-        for ($i = 1; $i <= $passenger_count; $i++) {
-            echo 'var selectedAccommodation = document.getElementById("accommodation_' . $i . '").value;';
-            echo 'var originalPrice = ' . $ticket_price . ';';
-            echo 'if (selectedAccommodation === "economy") {';
-            echo 'totalCost += originalPrice;';
-            echo '} else if (selectedAccommodation === "business") {';
-            echo 'totalCost += originalPrice * 1.5;';
-            echo '} else if (selectedAccommodation === "first") {';
-            echo 'totalCost += originalPrice * 2;';
-            echo '}';
+        } else {
+            document.getElementById("discount_message").innerHTML = '';
         }
-        ?>
+}
 
-        document.getElementById("total_price").innerHTML = '<h3>Total Price: ₱' + totalCost + '</h3>';
-    }
+// Call the function to calculate the total price
+calculateTotalPrice();
+
+// Now you can use the totalCost variable wherever you need to access the calculated total price
+console.log(totalCost); // Example usage
+
+        // discount message
+        if (discountApplied) {
+            document.getElementById("discount_message").innerHTML = '<p style="color: green; font-weight: bold; text-align:center;">10% Discount applied for passengers aged 60 or above.</p>';
+
+        } else {
+            document.getElementById("discount_message").innerHTML = '';
+        }
+    
 </script>
 
-      
-       
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        calculateTotalPrice();
+    });
+</script>
 
-            
+</div>     
             <!-- Payment Methods -->
             <div class="payment-methods">
                 <h3>Available Payment Methods</h3>
@@ -231,20 +280,19 @@ include_once './config/database.php';
 <script src="./js/confirm_booking.js"></script>
 
 <script>
-
     // Event listener for confirming the booking
- document.getElementById("confirmBooking").addEventListener("click", function() {
-        var totalPrice = <?php echo $price; ?>;
+    document.getElementById("confirmBooking").addEventListener("click", function() {
         var selectedPayment = document.querySelector('input[name="payment-method"]:checked');
         if (selectedPayment) {
-            var paymentMethod = selectedPayment.value;
-            alert("Ticket successfully purchased!\nTotal Amount: ₱" + totalPrice + "\nPayment Method: " + paymentMethod + "\nThank you for choosing Skyline Airways, have a great day ahead..");
+            // Redirecting to pay_success.php
+            window.location.href = "pay_success.php";
         } else {
             alert("Please select a payment method.");
         }
     });
-
 </script>
+
+
 </main>
 </body>
 </html>

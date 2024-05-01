@@ -27,7 +27,6 @@
                 echo '<div class="dropdown">';
                 echo '<button class="dropbtn">Hello, ' . $_SESSION['username'] . '</button>';
                 echo '<div class="dropdown-content">';
-                echo '<a href="#">Profile</a>';
                 echo '<a href="logout.php" class="logout">Logout</a>';
                 echo '</div>';
                 echo '</div>';
@@ -39,40 +38,76 @@
         </ul>  
     </nav>
 </header> 
+
 <main>
+    
+<div class="main-container">
     <?php
     include './config/database.php';
 
-    // Define your SQL query
-    $sql = "SELECT * FROM logindata"; // Change 'your_table' to your actual table name
+    // Retrieve main passenger data
+    $stmt_get_main_passenger = $conn->prepare("SELECT * FROM main_passengers");
+    $stmt_get_main_passenger->execute();
+    $result_main_passenger = $stmt_get_main_passenger->get_result();
 
-    // Execute the query
-    $result = $conn->query($sql);
-
-    // Check if there are rows returned
-    if ($result->num_rows > 0) {
-        // Output table header
-        echo "<table border='1'>";
-        echo "<tr><th>ID</th><th>First Name</th><th>Last Name</th></tr>"; // Corrected column names
-
-        // Output data of each row
-        while ($row = $result->fetch_assoc()) {
+    echo "<h2>Main Passenger Data</h2>"; // Title for main passenger data
+    
+    // Check if there are no main passengers
+    if ($result_main_passenger->num_rows === 0) {
+        echo "<p>No booked Customer</p>";
+    } else {
+        echo "<table>";
+        echo "<tr><th>Main Passenger ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Contact Number</th><th>Seat</th><th>Accommodation</th><th>Total Price</th><th>Action</th></tr>";
+        while ($main_passenger_data = $result_main_passenger->fetch_assoc()) {
             echo "<tr>";
-            echo "<td>" . $row["reg_id"] . "</td>"; // Replace 'id' with your actual column names
-            echo "<td>" . $row["reg_firstname"] . "</td>"; // Replace 'name' with your actual column names
-            echo "<td>" . $row["reg_lastname"] . "</td>"; // Replace 'email' with your actual column names
+            echo "<td>" . $main_passenger_data['MainPassenger'] . "</td>";
+            echo "<td>" . $main_passenger_data['first_name'] . "</td>";
+            echo "<td>" . $main_passenger_data['last_name'] . "</td>";
+            echo "<td>" . $main_passenger_data['email'] . "</td>";
+            echo "<td>" . $main_passenger_data['contact_number'] . "</td>";
+            echo "<td>" . $main_passenger_data['seat'] . "</td>";
+            echo "<td>" . $main_passenger_data['accommodation'] . "</td>";
+            echo "<td>₱ " . $main_passenger_data['total_price'] . "</td>";
+            echo "<td><button class='btn update-btn'>Update</button>";
+            echo "<button class='btn delete-btn'>Delete</button></td>";
             echo "</tr>";
         }
-
-        // Close table
         echo "</table>";
+    }
+
+    // Retrieve and display other passengers' data
+    $stmt_get_other_passengers = $conn->prepare("SELECT * FROM other_passengers");
+    $stmt_get_other_passengers->execute();
+    $result_other_passengers = $stmt_get_other_passengers->get_result();
+
+    echo "<h2>Other Passengers Data</h2>"; // Title for other passengers data
+    
+    // Check if there are no other passengers
+    if ($result_other_passengers->num_rows === 0) {
+        echo "<p>No booked Customer</p>";
     } else {
-        // No records found
-        echo "0 results";
+        echo "<table>";
+        echo "<tr><th>Main Passenger ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Contact Number</th><th>Seat</th><th>Accommodation</th><th>Action</th></tr>";
+        while ($row = $result_other_passengers->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . $row['MainPassenger'] . "</td>";
+            echo "<td>" . $row['first_name'] . "</td>";
+            echo "<td>" . $row['last_name'] . "</td>";
+            echo "<td>" . $row['email'] . "</td>";
+            echo "<td>" . $row['contact_number'] . "</td>";
+            echo "<td>" . $row['seat'] . "</td>";
+            echo "<td>" . $row['accommodation'] . "</td>";
+            
+            echo "<td><button class='btn update-btn'>Update</button>";
+            echo "<button class='btn delete-btn'>Delete</button></td>";
+            echo "</tr>";
+        }
+        echo "</table>";
     }
     ?>
-   
-</main>      
+</div>
+
+</main>
 <script src="./js/adminfunct.js"></script>
 </body>
 </html>

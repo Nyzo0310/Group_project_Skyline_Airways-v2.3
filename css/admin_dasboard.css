@@ -1,43 +1,208 @@
-body {
-    margin: 0;
-    overflow-x: hidden;
-    padding: 10px;
-    position: relative;
+/* CSS for Main Passenger and Other Passenger tables */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px; /* Add margin to separate tables from header */
 }
 
-body::before {
-    content: "";
-    position: fixed;
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px; /* Add margin to the right */
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+.delete-btn {
+  background-color: #f44336;
+}
+
+.delete-btn:hover {
+  background-color: #da190b;
+}
+
+
+/* Main Passenger and Other Passenger Tables */
+.main-passenger-table,
+.other-passenger-table {
+    width: 80%;
+    margin: 20px auto; /* Center the tables horizontally */
+    border-collapse: collapse;
+}
+
+/* Style for table headers and cells */
+.main-passenger-table th,
+.main-passenger-table td,
+.other-passenger-table th,
+.other-passenger-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+/* Style for table headers */
+.main-passenger-table th,
+.other-passenger-table th {
+    background-color: #f2f2f2;
+}
+
+/* Style for table rows on hover */
+.main-passenger-table tr:hover,
+.other-passenger-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Positioning the tables at the bottom */
+.main-passenger-table {
+    position: absolute;
+    bottom: 20px; /* Align the main passenger table to the bottom of the page */
+}
+
+.other-passenger-table {
+    position: absolute;
+    bottom: 60px; /* Align the other passenger table above the main passenger table */
+}
+.main-container {
+    max-width: 2000px; /* Set maximum width */
+    margin: 80px auto 20px; /* Center content horizontally and add margin to separate from the header */
+    padding: 20px; /* Add padding around the content */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+
+/*Start of the Header*/
+header {
+    font-style: normal;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    position: absolute;
     top: 0;
     left: 0;
+    
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+  }
+  
+  .logo img {
+    height: 50px;
+    margin-right: 15px;
+  }
+  
+  .title h1 {
+    font-size: 26px;
+    margin: 0;
+    color: #fff;
+    font-size: 20px;
+    justify-content: left;
+    width: 300px;
+    font-family: 'Montserrat', sans-serif; /* Use the Montserrat font */
+    font-weight: 500; /* Adjust font weight as needed */
+  }
+  
+  nav {
+    max-width: 1400px; /* Adjust the max-width value as needed */
     width: 100%;
-    height: 100%;
-    background-color: rgba(238, 234, 234, 0.5);
-    z-index: -1;
-}
-
-/* Add or modify styles as needed */
-.dropdown {
+    padding: 2rem 1.5rem; /* Increase the padding to add more space */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Montserrat', sans-serif; /* Use the Montserrat font */
+    font-weight: 500; /* Adjust font weight as needed */
+  }
+  
+  nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-size: 16px; /* Adjust the font size as needed */
+    display: flex;
+    margin-left: auto; /* Align the nav ul content to the right */
+  }
+  
+  nav ul li:not(:last-child) {
+    margin-right: 5px; /* Add margin between list items */
+  }
+  
+  nav ul li a {
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+  }
+  
+  /* Add this to style the dropdown button */
+  nav .dropdown .dropbtn {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    cursor: pointer; /* Change cursor to pointer */
+  }
+  
+  nav .dropdown .dropbtn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  .dropdown {
     position: relative;
     display: inline-block;
-}
-
-.dropbtn {
+  }
+  
+  .dropbtn {
     background-color: transparent;
     color: white;
     padding: 10px 20px;
     font-size: 16px;
     border: none;
     cursor: pointer;
-    font-family: Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif; /* Use the Montserrat font */
+    font-weight: 500; /* Adjust font weight as needed */;
     transition: background-color 0.3s;
-}
-
-.dropbtn:hover {
+  }
+  
+  .dropbtn:hover {
     background-color: rgba(255, 255, 255, 0.1);
-}
-
-.dropdown-content {
+  }
+  
+  .dropdown-content {
     display: none;
     position: absolute;
     background-color: #333; /* Background color of the dropdown */
@@ -46,99 +211,24 @@ body::before {
     z-index: 1;
     border-radius: 5px;
     padding: 10px;
-}
-
-.dropdown-content a {
+  }
+  
+  .dropdown-content a {
     color: white;
     padding: 10px 0;
     text-decoration: none;
     display: block;
     transition: color 0.3s;
-}
-
-.dropdown-content a:hover {
+  }
+  
+  .dropdown-content a:hover {
     background-color: rgba(255, 255, 255, 0.1);
-}
-
-.dropdown.active .dropdown-content {
+  }
+  
+  .dropdown.active .dropdown-content {
     display: block;
-}
-.dropdown-content a.logout {
+  }
+  .dropdown-content a.logout {
     color: red; /* Color for logout link */
-}
-header {
-    font-style: normal;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 10px;
-    background-color: rgba(0, 0, 0, 1);
-    width: 100%;
-    box-sizing: border-box;
-    margin: 0;
-    position: fixed;
-    top: 0;
-    left: 0;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    padding-left: 15px;
-}
-
-.logo img {
-    height: 50px;
-    margin-right: 15px;
-}
-
-.title h1 {
-    margin: 0;
-    color: #fff;
-    font-size: 30px;
-}
-
-/* Add or modify styles as needed */
-
-nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    font-size: 20px;
-}
-
-nav ul li {
-    display: inline;
-    margin-right: 20px;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    display: inline-block; /* Make the anchor tags inline-block */
-}
-
-nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    cursor: pointer; /* Change cursor to pointer on hover */
-}
-
-/* Add this to style the dropdown button */
-nav .dropdown .dropbtn {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    cursor: pointer; /* Change cursor to pointer */
-}
-
-nav .dropdown .dropbtn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
+  }
+  /*End of the Header*/
