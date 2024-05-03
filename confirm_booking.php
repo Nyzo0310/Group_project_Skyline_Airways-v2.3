@@ -63,9 +63,14 @@ include_once './config/database.php';
 </header> 
 
 <main>
+
     <div class="passenger-title-container">
+        <div class="logo logo-passenger-title">
+            <img src="./assets/images/logo.jpg" alt="Airline Logo">
+        </div>
         <h2 class="passenger_title">Passenger Details</h2>
     </div>
+
     <div class="passenger-details">
         <form action="insertdata.php" method="POST">
             <!-- Passenger Details -->
@@ -109,7 +114,7 @@ for ($i = 1; $i <= $passenger_count; $i++) {
     echo '<span id="discount_indicator_' . $i . '" class="discount-indicator" style="display: none; color: green; font-weight: bold;">(Discount Applied)</span>';
 
     // Ticket price display for main passenger
-echo '<div id="ticket_price_' . $i . '" class="ticket-price">Ticket Price: ₱<span id="displayed_ticket_price_' . $i . '">' . $ticket_price . '</span></div>';
+echo '<div id="ticket_price_' . $i . '" class="ticket-price">Ticket Price: ₱<span id="displayed_ticket_price_' . $i . '" class="displayed_price">' . $ticket_price . '</span></div>';
 echo '</div>';
 echo '</div>';
 // Add a hidden input field to capture the displayed ticket price for the main passenger
@@ -122,9 +127,8 @@ echo '<input type="hidden" name="displayed_ticket_price_1" value="' . $ticket_pr
 ?>
 
 <!-- Overall Price Display -->
-<!-- Overall Price Display -->
 <div class="total-price" id="overall_price">
-    <h3>Overall Price: ₱<span id="displayed_overall_price"><?php echo $totalTicketPrice; ?></span></h3>
+    <h3 class="final_price">Overall Price: ₱<span id="displayed_overall_price"><?php echo $totalTicketPrice; ?></span>
     <input type="hidden" name="ticket_price_1" value="<?php echo $totalTicketPrice; ?>">
 </div>
 
