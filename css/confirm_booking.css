@@ -170,7 +170,7 @@ main {
 /* Passenger Title Styles */
 .passenger-title-container {
     text-align: center;
-    margin-top: 60px; /* Add top margin to create space between header and passenger title */
+    margin-top: 20px; /* Add top margin to create space between header and passenger title */
     margin-bottom: 20px; /* Adjust bottom margin as needed */
 }
 

@@ -67,133 +67,116 @@ include_once './config/database.php';
         <h2 class="passenger_title">Passenger Details</h2>
     </div>
     <div class="passenger-details">
-        <form action="insertdata.php" method="POST"> <!-- Form for submitting passenger data -->
+        <form action="insertdata.php" method="POST">
             <!-- Passenger Details -->
-            <?php
-            // Loop through each passenger
-            for ($i = 1; $i <= $passenger_count; $i++) {
-            // Passenger details inputs
-            echo '<div class="passenger-info">';
-            echo '<h3>Passenger ' . $i . '</h3>';
-            echo '<label for="first_name_' . $i . '">First Name:</label>';
-            echo '<input type="text" id="first_name_' . $i . '" name="first_name_' . $i . '" required>';
-            echo '<label for="last_name_' . $i . '">Last Name:</label>';
-            echo '<input type="text" id="last_name_' . $i . '" name="last_name_' . $i . '" required>';
-            echo '<label for="email_' . $i . '">Email:</label>';
-            echo '<input type="email" id="email_' . $i . '" name="email_' . $i . '" required>';
-            echo '<label for="contact_number_' . $i . '">Contact Number:</label>';
-            echo '<input type="text" id="contact_number_' . $i . '" name="contact_number_' . $i . '" required>';
-            echo '<label for="dob_' . $i . '">Date of Birth:</label>';
-            echo '<input type="date" id="dob_' . $i . '" name="dob_' . $i . '" required>';
-            // Seat Selection for each passenger
+<?php
+$totalTicketPrice = 0;
 
-            echo '<div class="flight-seats">';
-            echo '<label for="seat_' . $i . '">Select Seat:</label>';
-            echo '<select id="seat_' . $i . '" name="seat_' . $i . '">';
-            echo '<option value="Window Seat">Window Seat</option>';
-            echo '<option value="Aisle Seat">Aisle Seat</option>';
-            echo '<option value="Middle Seat">Middle Seat</option>';
-            echo '</select>';
-            echo '</div>';
+// Loop through each passenger
+for ($i = 1; $i <= $passenger_count; $i++) {
+    // Passenger details inputs
+    echo '<div class="passenger-info">';
+    echo '<h3>Passenger ' . $i . '</h3>';
+    echo '<label for="first_name_' . $i . '">First Name:</label>';
+    echo '<input type="text" id="first_name_' . $i . '" name="first_name_' . $i . '" required>';
+    echo '<label for="last_name_' . $i . '">Last Name:</label>';
+    echo '<input type="text" id="last_name_' . $i . '" name="last_name_' . $i . '" required>';
+    echo '<label for="email_' . $i . '">Email:</label>';
+    echo '<input type="email" id="email_' . $i . '" name="email_' . $i . '" required>';
+    echo '<label for="contact_number_' . $i . '">Contact Number:</label>';
+    echo '<input type="text" id="contact_number_' . $i . '" name="contact_number_' . $i . '" required>';
+    echo '<label for="dob_' . $i . '">Date of Birth:</label>';
+    echo '<input type="date" id="dob_' . $i . '" name="dob_' . $i . '" required>';
+    // Seat Selection for each passenger
+    echo '<div class="flight-seats">';
+    echo '<label for="seat_' . $i . '">Select Seat:</label>';
+    echo '<select id="seat_' . $i . '" name="seat_' . $i . '">';
+    echo '<option value="window">Window Seat</option>';
+    echo '<option value="aisle">Aisle Seat</option>';
+    echo '<option value="middle">Middle Seat</option>';
+    echo '</select>';
+    echo '</div>';
+    // Accommodation Selection for each passenger
+    echo '<div class="flight-accommodations">';
+    echo '<label for="accommodation_' . $i . '">Select Accommodation:</label>';
+    echo '<select id="accommodation_' . $i . '" name="accommodation_' . $i . '" onchange="calculateTotalPrice(' . $i . ')">';
+    echo '<option value="economy">Economy Class</option>';
+    echo '<option value="business">Business Class</option>';
+    echo '<option value="first">First Class</option>';
+    echo '</select>';
+    
+    // Indicator for discount
+    echo '<span id="discount_indicator_' . $i . '" class="discount-indicator" style="display: none; color: green; font-weight: bold;">(Discount Applied)</span>';
 
+    // Ticket price display for main passenger
+echo '<div id="ticket_price_' . $i . '" class="ticket-price">Ticket Price: ₱<span id="displayed_ticket_price_' . $i . '">' . $ticket_price . '</span></div>';
+echo '</div>';
+echo '</div>';
+// Add a hidden input field to capture the displayed ticket price for the main passenger
+echo '<input type="hidden" name="displayed_ticket_price_1" value="' . $ticket_price . '">';
 
-            echo '<div class="flight-accommodations">';
-            echo '<label for="accommodation_' . $i . '">Select Accommodation:</label>';
-            echo '<select id="accommodation_' . $i . '" name="accommodation_' . $i . '" onchange="calculateTotalPrice()">';
-            echo '<option value="Economy Glass">Economy Glass</option>';
-            echo '<option value="Business Glass">Business Glass</option>';
-            echo '<option value="First Glass">First Glass</option>';
-            echo '</select>';
-            echo '</div>';
+    
+    // Add the ticket price for this passenger to the total ticket price
+    $totalTicketPrice += $ticket_price;
+}
+?>
 
-        }
-        ?>
-        
-       <!-- Total Price -->
-<div class="total-price" id="total_price">
-    <!-- This will be updated dynamically by JavaScript -->
-    <h3>Total Price: ₱<span id="displayed_total_price"><?php echo $price; ?></span></h3>
+<!-- Overall Price Display -->
+<!-- Overall Price Display -->
+<div class="total-price" id="overall_price">
+    <h3>Overall Price: ₱<span id="displayed_overall_price"><?php echo $totalTicketPrice; ?></span></h3>
+    <input type="hidden" name="ticket_price_1" value="<?php echo $totalTicketPrice; ?>">
 </div>
 
-<!-- Hidden Input Field for Total Price -->
-<input type="hidden" id="total_cost" name="total_cost" value="<?php echo $price; ?>">
-
-        <!-- Discount Message -->
-        <div id="discount_message">
-
-        </div>
-
-    <script>
-    // Function to calculate total price based on accommodation selection
-   // Define a global variable to store the total cost
-var totalCost = 0;
-var discountApplied = false;
-
-// Function to calculate total price based on accommodation selection
-function calculateTotalPrice() {
-    totalCost = 0;
-    discountApplied = false;
-    <?php
-    for ($i = 1; $i <= $passenger_count; $i++) {
-        echo 'var selectedAccommodation = document.getElementById("accommodation_' . $i . '").value;';
-        echo 'var originalPrice = ' . $ticket_price . ';';
-        echo 'if (selectedAccommodation === "Economy Glass") {';
-        echo 'totalCost += originalPrice;';
-        echo '} else if (selectedAccommodation === "Business Glass") {';
-        echo 'totalCost += originalPrice * 1.5;';
-        echo '} else if (selectedAccommodation === "First Glass") {';
-        echo 'totalCost += originalPrice * 2;';
-        echo '}';
-        // Check if passenger age is 60 or above
-        echo 'var dob = new Date(document.getElementById("dob_' . $i . '").value);';
-        echo 'var today = new Date();';
-        echo 'var age = today.getFullYear() - dob.getFullYear();';
-        echo 'if (today.getMonth() < dob.getMonth() || (today.getMonth() === dob.getMonth() && today.getDate() < dob.getDate())) {';
-        echo 'age--;';
-        echo '}';
-        // Apply discount if passenger age is 60 or above
-        echo 'if (age >= 60) {';
-        echo 'totalCost -= originalPrice * 0.1;';
-        echo 'discountApplied = true;';
-        echo '}';
-    }
-    ?>
-
-    // Update the displayed total price
-    document.getElementById("displayed_total_price").textContent = totalCost.toFixed(2);
-
-    // Set the total price in the hidden input field
-    document.getElementById("total_cost").value = totalCost.toFixed(2);
-
-     // discount message
-     if (discountApplied) {
-            document.getElementById("discount_message").innerHTML = '<p style="color: green; font-weight: bold; text-align:center;">10% Discount applied for passengers aged 60 or above.</p>';
-
-        } else {
-            document.getElementById("discount_message").innerHTML = '';
-        }
-}
-
-// Call the function to calculate the total price
-calculateTotalPrice();
-
-// Now you can use the totalCost variable wherever you need to access the calculated total price
-console.log(totalCost); // Example usage
-
-        // discount message
-        if (discountApplied) {
-            document.getElementById("discount_message").innerHTML = '<p style="color: green; font-weight: bold; text-align:center;">10% Discount applied for passengers aged 60 or above.</p>';
-
-        } else {
-            document.getElementById("discount_message").innerHTML = '';
-        }
-    
-</script>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        calculateTotalPrice();
-    });
+// Function to calculate total price based on accommodation selection for each passenger
+function calculateTotalPrice(passengerIndex) {
+    var selectedAccommodation = document.getElementById("accommodation_" + passengerIndex).value;
+    var originalPrice = <?php echo $ticket_price; ?>; // Assuming $ticket_price is the base ticket price
+
+    // Calculate ticket price for the selected accommodation
+    var ticketPrice = originalPrice; // Default to base price
+    if (selectedAccommodation === "business") {
+        ticketPrice *= 1.5; // Business class multiplier
+    } else if (selectedAccommodation === "first") {
+        ticketPrice *= 2; // First class multiplier
+    }
+
+    // Check passenger age for discount
+    var dob = new Date(document.getElementById("dob_" + passengerIndex).value);
+    var today = new Date();
+    var age = today.getFullYear() - dob.getFullYear();
+    if (today.getMonth() < dob.getMonth() || (today.getMonth() === dob.getMonth() && today.getDate() < dob.getDate())) {
+        age--;
+    }
+    
+    // Apply discount for passengers aged 60 or above
+    if (age >= 60) {
+        ticketPrice *= 0.9; // 10% discount
+        document.getElementById("discount_indicator_" + passengerIndex).style.display = "inline"; // Show discount indicator
+    } else {
+        document.getElementById("discount_indicator_" + passengerIndex).style.display = "none"; // Hide discount indicator
+    }
+
+    // Update the displayed ticket price for the passenger
+    document.getElementById("displayed_ticket_price_" + passengerIndex).textContent = ticketPrice.toFixed(2);
+    
+    // Update the overall price
+    updateOverallPrice();
+}
+
+// Function to update the overall price
+function updateOverallPrice() {
+    var overallPrice = 0;
+    <?php
+    // Loop through each passenger to calculate the overall price
+    for ($i = 1; $i <= $passenger_count; $i++) {
+        echo 'overallPrice += parseFloat(document.getElementById("displayed_ticket_price_' . $i . '").textContent);';
+    }
+    ?>
+    document.getElementById("displayed_overall_price").textContent = overallPrice.toFixed(2);
+}
 </script>
 
 </div>     
@@ -280,19 +263,20 @@ console.log(totalCost); // Example usage
 <script src="./js/confirm_booking.js"></script>
 
 <script>
-    // Event listener for confirming the booking
-    document.getElementById("confirmBooking").addEventListener("click", function() {
-        var selectedPayment = document.querySelector('input[name="payment-method"]:checked');
-        if (selectedPayment) {
-            // Redirecting to pay_success.php
-            window.location.href = "pay_success.php";
-        } else {
-            alert("Please select a payment method.");
-        }
-    });
+document.addEventListener("DOMContentLoaded", function() {
+    // Initialize totalPriceElement after the DOM has fully loaded
+    var totalPriceElement = document.querySelector(".total-price");
+    // Check if totalPriceElement is not null before accessing its properties
+    if (totalPriceElement) {
+        var totalPrice = parseFloat(totalPriceElement.innerText.replace("Overall Price: ₱", ""));
+        document.getElementById("displayed_overall_price").textContent = totalPrice.toFixed(2);
+    } else {
+        console.error("Total price element not found.");
+    }
+});
+
+
 </script>
-
-
 </main>
 </body>
 </html>

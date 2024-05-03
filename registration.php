@@ -34,19 +34,19 @@
     <div class="form-row">
         <!-- First column -->
         <div class="form-column">
-            <label>First Name</label>
+            <label>First Name:<b style="color: red">*</b></label>
             <input type="text" name="first_name" placeholder="First Name" required><br>
             
-            <label>Last Name</label>
+            <label>Last Name: <b style="color: red">*</b></label>
             <input type="text" name="last_name" placeholder="Last Name" required><br>
             
-            <label>Email</label>
+            <label>Email: <b style="color: red">*</b></label>
             <input type="email" name="email" placeholder="Email Address" required><br>
             
-            <label>Password</label>
+            <label>Password: <b style="color: red">*</b></label>
             <input type="password" name="password" id="password" placeholder="Password" required><br>
             
-            <label>Confirm Password</label>
+            <label>Confirm Password: <b style="color: red">*</b></label>
             <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required><br>
         </div><hr>
 
@@ -59,7 +59,7 @@
                         
                         </div>
                         <div class="col-md-12">
-                            <label>Region : <b class="text-danger">*</b></label>
+                            <label>Region : <b style="color: red">*</b></label>
                             <select name="inp_region" id="inp_region" onchange="display_province(this.value)" required
                                 class="form-control mt-2">
                                 <option value="" disabled selected>-- SELECT REGION --</option>
@@ -83,18 +83,18 @@
                             </select>
                         </div>
 
-            <label1>Province : <b class="text-danger">*</b></label1>
+            <label1>Province : <b style="color: red">*</b></label1>
             <select name="inp_province" id="inp_province" onchange="display_citymun(this.value)" required class="form-control mt-2">
                 <option value="" disabled selected>-- SELECT PROVINCE --</option>
                 <!-- PHP code for provinces -->
             </select>
 
-            <label1>City / Municipality : <b class="text-danger">*</b></label1>
+            <label1>City / Municipality : <b style="color: red">*</b></label1>
             <select name="inp_citymun" id="inp_citymun" onchange="display_brgy(this.value)" required class="form-control mt-2">
                 <option value="" disabled selected>-- SELECT CITY / MUNICIPALITY --</option>
                 <!-- PHP code for cities/municipalities -->
             </select>
-            <label1>Barangay : <b class="text-danger">*</b></label1>
+            <label1>Barangay : <b style="color: red">*</b></b></label1>
             <select name="inp_brgy" id="inp_brgy" required class="form-control mt-2">
                 <option value="" disabled selected>-- SELECT BARANGAY --</option>
                 <!-- PHP code for barangays -->
@@ -104,7 +104,7 @@
         <!-- Third column -->
         <div class="form-column">
             
-            <label>Input ID</label>
+            <label>Input ID: <b style="color: red">*</b></label>
             <input type="file" name="id_upload" id="fileInput" accept="image/*" required onchange="previewImage(event)"><br>
             <img id="imagePreview" src="#" alt="Image Preview" style="width: 290px; height: 290px; display: none;"><br>
         </div>
