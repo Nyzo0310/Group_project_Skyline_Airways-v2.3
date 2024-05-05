@@ -13,10 +13,18 @@ body {
     min-height: 100vh;
     position: relative; /* Add position relative */
 }
-
+body:before {
+    content: "";
+    background-color: rgba(0, 0, 0, 0.5); /* Transparent gray color */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Place the pseudo-element behind other content */
+}
 /* Header Styles */
 header {
-    position: fixed;
     font-style: normal;
     display: flex;
     align-items: center;
@@ -28,33 +36,31 @@ header {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 2;
-}
-
-.logo {
+  }
+  
+  .logo {
     display: flex;
     align-items: center;
     padding-left: 10px;
-}
-
-.logo img {
+  }
+  
+  .logo img {
     height: 50px;
     margin-right: 15px;
-}
-
-.title h1 {
+  }
+  
+  .title h1 {
     font-size: 26px;
     margin: 0;
     color: #fff;
     font-size: 20px;
-    /* justify-content: left; Remove justify-content */
-    /* width: 300px; Remove fixed width */
+    justify-content: left;
+    width: 300px;
     font-family: 'Montserrat', sans-serif; /* Use the Montserrat font */
-    font-weight: 500; /* Adjust font weight as needed */
-    margin-right: 20px; /* Add margin to create space between logo and title */
-}
+    font-weight: 500; /* Adjust font weight as needed */ 
+  }
   
-nav {
+  nav {
     max-width: 1400px; /* Adjust the max-width value as needed */
     width: 100%;
     padding: 2rem 1.5rem; /* Increase the padding to add more space */
@@ -63,57 +69,66 @@ nav {
     justify-content: space-between;
     font-family: 'Montserrat', sans-serif; /* Use the Montserrat font */
     font-weight: 500; /* Adjust font weight as needed */
-}
-
-nav ul {
+    transition: transform 0.3s ease-in-out; /* Add transition for transform property */
+  }
+  
+  nav:hover {
+    transform: translateZ(5px); /* Move the nav bar forward slightly on hover */
+  }
+  
+  
+  nav ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     font-size: 16px; /* Adjust the font size as needed */
     display: flex;
     margin-left: auto; /* Align the nav ul content to the right */
-}
-
-nav ul li:not(:last-child) {
+  }
+  
+  nav ul li:not(:last-child) {
     margin-right: 5px; /* Add margin between list items */
-}
-
-nav ul li a {
+  }
+  
+  nav ul li a {
     font-size: 20px;
-    color: white;
     text-decoration: none;
     font-weight: 500;
     padding: 10px 20px;
     border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    color: white; /* Base color */
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Add transform transition */
+  }
+  
+  nav ul li a:hover {
     cursor: pointer;
-}
-
-/* Add this to style the dropdown button */
-nav .dropdown .dropbtn {
+    color: yellow; /* Bright color on hover */
+    transform: translateZ(5px); /* Move menu item forward on hover */
+  }
+  
+  
+  /* Add this to style the dropdown button */
+  nav .dropdown .dropbtn {
+    font-family: 'Montserrat', sans-serif; /* Use the Montserrat font */
     color: #fff;
     text-decoration: none;
     font-weight: bold;
     padding: 10px 20px;
     border-radius: 5px;
-    transition: background-color 0.3s;
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out; 
     cursor: pointer; /* Change cursor to pointer */
-}
-
-nav .dropdown .dropbtn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.dropdown {
+  }
+  
+  nav .dropdown .dropbtn:hover {
+    color: yellow;
+  }
+  
+  .dropdown {
     position: relative;
     display: inline-block;
-}
-
-.dropbtn {
+  }
+  
+  .dropbtn {
     background-color: transparent;
     color: white;
     padding: 10px 20px;
@@ -122,13 +137,9 @@ nav .dropdown .dropbtn:hover {
     cursor: pointer;
     font-family: Arial, sans-serif;
     transition: background-color 0.3s;
-}
-
-.dropbtn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.dropdown-content {
+  }
+  
+  .dropdown-content {
     display: none;
     position: absolute;
     background-color: #333; /* Background color of the dropdown */
@@ -137,29 +148,28 @@ nav .dropdown .dropbtn:hover {
     z-index: 1;
     border-radius: 5px;
     padding: 10px;
-}
-
-.dropdown-content a {
+  }
+  
+  .dropdown-content a {
     color: white;
     padding: 10px 0;
     text-decoration: none;
     display: block;
     transition: color 0.3s;
-}
-
-.dropdown-content a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.dropdown.active .dropdown-content {
+  }
+  
+  .dropdown-content a:hover {
+    color: yellow;
+  }
+  
+  .dropdown.active .dropdown-content {
     display: block;
-}
-
-.dropdown-content a.logout {
+  }
+  
+  .dropdown-content a.logout {
     color: red; /* Color for logout link */
-}
-/* End of Header Styles */
-
+  }
+  /* End of Header Styles */
 main {
     position: fixed;
     top: 70px; /* Adjust according to the header height */

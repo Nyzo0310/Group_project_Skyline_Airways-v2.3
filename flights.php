@@ -75,26 +75,27 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 echo "<table>";
                 echo "<tr><th>Flight Number</th><th>Departure</th><th>Departure Date</th><th>Departure-Time</th><th>Arrival</th><th>Arrival Date</th><th>Arrival-Time</th><th>Price</th><th>Book</th></tr>";
 
-                // Output data of each row
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . $row["flight_number"] . "</td>";
-                    echo "<td>" . $row["departure_location"] . "</td>";
-                    echo "<td>" . $departureDate . "</td>"; 
-                    echo "<td>" . $row["Departure-Time"] . "</td>";
-                    echo "<td>" . $row["arrival_location"] . "</td>";
-                    echo "<td>" . $departureDate . "</td>"; 
-                    echo "<td>" . $row["Arrival-Time"] . "</td>"; 
-                    echo "<td>₱" . $row["price"] . "</td>";
-                    // Check if user is logged in
-                    if(isset($_SESSION['username'])) {
-                        // Redirect user to booking.php with flight_id and dates as parameters
-                        echo "<td><a href='booking.php?flight_id=" . $row["flight_number"] . "&departure_date=" . $departureDate . "&arrival_date=" . $departureDate . "' class='book-now-button'>Book Now</a></td>";
-                    } else {
-                        echo "<td><button disabled>Log in to Book</button></td>";
-                    }
-                    echo "</tr>";
+            // Output data of each row
+            while ($row = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td class='flight-number'>" . $row["flight_number"] . "</td>"; // Add class to this td element
+                echo "<td>" . $row["departure_location"] . "</td>";
+                echo "<td>" . $departureDate . "</td>"; 
+                echo "<td class='flight-number'>" . $row["Departure-Time"] . "</td>";
+                echo "<td>" . $row["arrival_location"] . "</td>";
+                echo "<td>" . $departureDate . "</td>"; 
+                echo "<td class='flight-number'>" . $row["Arrival-Time"] . "</td>"; 
+                echo "<td>₱" . $row["price"] . "</td>";
+                // Check if user is logged in
+                if(isset($_SESSION['username'])) {
+                    // Redirect user to booking.php with flight_id and dates as parameters
+                    echo "<td><a href='booking.php?flight_id=" . $row["flight_number"] . "&departure_date=" . $departureDate . "&arrival_date=" . $departureDate . "' class='book-now-button'>Book Now</a></td>";
+                } else {
+                    echo "<td><button disabled>Log in to Book</button></td>";
                 }
+                echo "</tr>";
+            }
+
                 echo "</table>";
             } else {
                 echo "<p>No flights found.</p>";

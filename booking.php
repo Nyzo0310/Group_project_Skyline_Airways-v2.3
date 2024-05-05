@@ -43,7 +43,7 @@ if ($result->num_rows > 0) {
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/booking.css">
     <link rel="icon" href="./assets/images/favicon.jpg">
-    <title>Skyine - Flight <?php echo $flight['flight_number']; ?></title>
+    <title>Skyline - Trip Summary</title>
 </head>
 <body>
 
@@ -51,7 +51,7 @@ if ($result->num_rows > 0) {
     <div class="logo">
         <img src="./assets/images/logo.jpg" alt="Airline Logo">
         <div class="title">
-            <h1>Trip Summary of Flight - #<?php echo $flight['flight_number']; ?></h1>
+            <h1>Skyline Trip Summary</h1>
         </div>
     </div>
     <nav>
@@ -75,7 +75,7 @@ if ($result->num_rows > 0) {
 
 <main>
     <div class="booking-details">
-        <h2>Trip Summary</h2>
+        <h2>Trip Summary of Flight - #<?php echo $flight['flight_number']; ?></h2>
         <table>
             <tr>
                 <td><strong>Flight Number:</strong></td>
@@ -125,16 +125,22 @@ if ($result->num_rows > 0) {
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
                 <!-- Add more options as needed -->
             </select>
             <input type="submit" value="Confirm Booking">
         </form>
     </div>
 </main>
-
-<footer>
-    <p>&copy; <?php echo date("Y"); ?> Skyline Airways PH</p>
-</footer>
 
 <script>
     function validateForm() {
