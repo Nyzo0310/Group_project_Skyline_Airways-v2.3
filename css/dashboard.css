@@ -54,31 +54,28 @@ header {
 }
 
 nav {
-  max-width: 1400px; /* Adjust the max-width value as needed */
+  max-width: 1600px; /* Adjust the max-width value as needed */
   width: 100%;
-  padding: 2rem 1.5rem; /* Increase the padding to add more space */
+  padding: 1.8rem 2rem; /* Increase the padding to add more space */
   display: flex;
-  align-items: center;
   justify-content: space-between;
   font-family: 'Montserrat', sans-serif; /* Use the Montserrat font */
-  font-weight: 500; /* Adjust font weight as needed */
   transition: transform 0.3s ease-in-out; /* Add transition for transform property */
 }
 
 nav:hover {
   transform: translateZ(5px); /* Move the nav bar forward slightly on hover */
 }
-
-
 nav ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  font-size: 16px; /* Adjust the font size as needed */
   display: flex;
   margin-left: auto; /* Align the nav ul content to the right */
 }
-
+nav li {
+  margin-top: 7px;
+}
 nav ul li:not(:last-child) {
   margin-right: 5px; /* Add margin between list items */
 }
@@ -87,7 +84,7 @@ nav ul li a {
   font-size: 20px;
   text-decoration: none;
   font-weight: 500;
-  padding: 10px 20px;
+  padding: 5px 20px;
   border-radius: 5px;
   color: white; /* Base color */
   transition: color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Add transform transition */
@@ -160,8 +157,12 @@ nav .dropdown .dropbtn:hover {
 }
 
 .dropdown-content a.logout {
+  color: white; /* Color for logout link */
+}
+.dropdown-content a.logout:hover{
   color: red; /* Color for logout link */
 }
+
 /* End of Header Styles */
 
 /*Start of the main contents*/
@@ -183,6 +184,7 @@ main {
   color: var(--text-dark);
   padding-top: 20px;
   padding-left: 20px;
+  font-family: 'Montserrat', sans-serif; /* Use the Montserrat font */
 }
 .btn__group {
   display: flex;

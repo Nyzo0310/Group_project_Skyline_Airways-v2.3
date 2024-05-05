@@ -99,7 +99,7 @@ nav ul li a {
   font-size: 20px;
   text-decoration: none;
   font-weight: 500;
-  padding: 10px 20px;
+  padding: 10px 10px;
   border-radius: 5px;
   color: white; /* Base color */
   transition: color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Add transform transition */
