@@ -36,30 +36,29 @@ header {
     position: absolute;
     top: 0;
     left: 0;
-}
-
-.logo {
+  }
+  
+  .logo {
     display: flex;
     align-items: center;
     padding-left: 10px;
-}
-
-.logo img {
+  }
+  
+  .logo img {
     height: 50px;
     margin-right: 15px;
-}
-
-.title h1 {
+  }
+  
+  .title h1 {
     font-size: 26px;
     margin: 0;
     color: #fff;
     font-size: 20px;
-    /* justify-content: left; Remove justify-content */
-    /* width: 300px; Remove fixed width */
+    justify-content: left;
+    width: 300px;
     font-family: 'Montserrat', sans-serif; /* Use the Montserrat font */
-    font-weight: 500; /* Adjust font weight as needed */
-    margin-right: 20px; /* Add margin to create space between logo and title */
-}
+    font-weight: 500; /* Adjust font weight as needed */ 
+  }
   
   nav {
     max-width: 1400px; /* Adjust the max-width value as needed */
@@ -70,7 +69,13 @@ header {
     justify-content: space-between;
     font-family: 'Montserrat', sans-serif; /* Use the Montserrat font */
     font-weight: 500; /* Adjust font weight as needed */
+    transition: transform 0.3s ease-in-out; /* Add transition for transform property */
   }
+  
+  nav:hover {
+    transform: translateZ(5px); /* Move the nav bar forward slightly on hover */
+  }
+  
   
   nav ul {
     list-style-type: none;
@@ -87,32 +92,35 @@ header {
   
   nav ul li a {
     font-size: 20px;
-    color: white;
     text-decoration: none;
     font-weight: 500;
     padding: 10px 20px;
     border-radius: 5px;
-    transition: background-color 0.3s;
+    color: white; /* Base color */
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Add transform transition */
   }
   
   nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
     cursor: pointer;
+    color: yellow; /* Bright color on hover */
+    transform: translateZ(5px); /* Move menu item forward on hover */
   }
+  
   
   /* Add this to style the dropdown button */
   nav .dropdown .dropbtn {
+    font-family: 'Montserrat', sans-serif; /* Use the Montserrat font */
     color: #fff;
     text-decoration: none;
     font-weight: bold;
     padding: 10px 20px;
     border-radius: 5px;
-    transition: background-color 0.3s;
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out; 
     cursor: pointer; /* Change cursor to pointer */
   }
   
   nav .dropdown .dropbtn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    color: yellow;
   }
   
   .dropdown {
@@ -129,10 +137,6 @@ header {
     cursor: pointer;
     font-family: Arial, sans-serif;
     transition: background-color 0.3s;
-  }
-  
-  .dropbtn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
   }
   
   .dropdown-content {
@@ -155,7 +159,7 @@ header {
   }
   
   .dropdown-content a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    color: yellow;
   }
   
   .dropdown.active .dropdown-content {
