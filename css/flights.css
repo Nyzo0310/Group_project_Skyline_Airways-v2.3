@@ -11,12 +11,18 @@ th, td {
     padding: 20px; /* Increase padding to increase spacing */
     font-size: 16px; /* Increase font size */
 }
-
 tr:nth-child(even) {
     background-color: #f2f2f2;
 }
-
-
+th {
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
+  text-align: left;
+}
+td {
+  font-family: "Gill Sans", sans-serif;
+  font-size: 17px;
+}
 /* Button styles */
 .book-now-button,
 .login-button {

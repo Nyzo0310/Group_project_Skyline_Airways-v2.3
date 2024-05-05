@@ -10,7 +10,15 @@ th, td {
     padding: 20px; /* Increase padding to increase spacing */
     font-size: 16px; /* Increase font size */
 }
-
+th {
+  font-size: 20px;
+  font-family: 'Montserrat', sans-serif;
+  text-align: left;
+}
+td {
+  font-family: "Gill Sans", sans-serif;
+  font-size: 20px;
+}
 tr:nth-child(even) {
     background-color: #f2f2f2;
 }
@@ -50,7 +58,6 @@ td button {
     display: block;
     margin: 0 auto; /* Center the button horizontally */
 }
-
 /* Header Styles */
 header {
   font-style: normal;
@@ -119,7 +126,7 @@ nav ul li {
   font-size: 20px;
   text-decoration: none;
   font-weight: 500;
-  padding: 5px 10px;
+  padding: 5px 15px;
   border-radius: 5px;
   color: white; /* Base color */
   padding-bottom: 10px;
@@ -206,15 +213,18 @@ nav .dropdown .dropbtn:hover {
 
 main {
     padding: 20px;
-    margin-top: 110px; /* Adjust this value to create space between header and main content */
+    margin-top: 90px; /* Adjust this value to create space between header and main content */
 }
 .booking-details {
     display: flex;
     flex-wrap: wrap;
+    
 }
 
 .booking-details h2 {
-    width: 100%;
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-size: 40px;
 }
 
 .booking-details p {
@@ -230,17 +240,19 @@ form {
 
 /* Style the select dropdown */
 label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
+    margin-top: 5px;
     font-weight: bold;
 }
-
 select {
     width: 100%;
     padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 16px;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    font-size: 20px;
     margin-bottom: 15px;
 }
 
@@ -266,9 +278,4 @@ input[type="submit"]:hover {
     .booking-details p {
         width: 100%; /* Display each detail in a single column on smaller screens */
     }
-}
-
-
-footer {
-    text-align: center;
 }

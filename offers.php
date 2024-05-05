@@ -108,6 +108,11 @@
       </div>
     </div>
   </main>
+
+  <footer>
+    <p>&copy; <?php echo date("Y"); ?> Skyline Airways PH</p>
+  </footer>
+
   <script src="./js/offers.js"></script>
 </body>
 </html>
