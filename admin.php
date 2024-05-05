@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./css/admin_dasboard.css">
 </head>
 <body>
-<header>
+<header class="header1">
     <div class="logo">
         <img src="./assets/images/logo.jpg" alt="Airline Logo">
         <div class="title">
@@ -19,7 +19,8 @@
     <nav>
         <ul>
             <li><a href="#">Ongoing Flights</a></li>
-            <li><a href="#">Analytics</a></li>
+            <li><a href="#">Feedback</a></li>
+            <li><a href="#">User</a></li>
             <?php
             session_start(); // Start the session
             if(isset($_SESSION['username'])) {
@@ -40,8 +41,12 @@
 </header> 
 
 <main>
-    
+
+<div class="analytics">
+<h1 class="h1-anal">ANALYTICS</h1>
+</div>
 <div class="main-container">
+    
     <?php
     include './config/database.php';
 
@@ -68,7 +73,7 @@
             echo "<td>" . $main_passenger_data['seat'] . "</td>";
             echo "<td>" . $main_passenger_data['accommodation'] . "</td>";
             echo "<td>₱ " . $main_passenger_data['total_price'] . "</td>";
-            echo "<td><button class='btn update-btn'>Update</button>";
+            echo "<td class='btn-td'><button class='btn update-btn'>Update</button> <button class='btn view-btn'>View</button>";
             echo "<button class='btn delete-btn'>Delete</button></td>";
             echo "</tr>";
         }
@@ -98,7 +103,7 @@
             echo "<td>" . $row['seat'] . "</td>";
             echo "<td>" . $row['accommodation'] . "</td>";
             
-            echo "<td><button class='btn update-btn'>Update</button>";
+            echo "<td><button class='btn update-btn'>Update</button> <button class='btn view-btn'>View</button>";
             echo "<button class='btn delete-btn'>Delete</button></td>";
             echo "</tr>";
         }
