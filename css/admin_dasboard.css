@@ -1,39 +1,113 @@
 /* CSS for Main Passenger and Other Passenger tables */
 
 body{
-  padding-bottom: 500px;
   background-color: #b9b4b4;
 }
 
+
 .header1{
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    height: 100px;
-    z-index: 999;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100px;
+  z-index: 999;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.9);
+  box-sizing: border-box;
+  margin: 0;
 }
 
 .analytics {
-
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   border-radius: 50px;
   text-align: center;
   margin-top: 150px;
+  margin-bottom: 30px;
+  height: 150px;
   font-size: 50px;
   color: white;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
+.anal-logo {
+  height:100px;
+  width: 100px;
+  margin-right: 10px;
+  margin-top: -20px;
+ 
+}
+
 .h1-anal {
   cursor: pointer;
-  border-radius: 50px;
-  border: solid rgb(133, 131, 131) 2px ;
   font-family: monospace;
   text-shadow: 
         -1px -1px 0 #000,  
          1px -1px 0 #000,
         -1px  5px 0 #000,  
          15px  5px 0 #000;
+}
+
+.flex-analy {
+  display: flex;
+  flex-direction: row;
+  flex: 2fr 2fr 2fr;
+  justify-content: center;
+  margin-bottom: 20px;
+  
+}
+
+.analy1, .analy2, .analy3 {
+  background-color: #da190b;
+  height: 200px;
+  width: 300px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+  flex: 1fr 1fr;
+  
+}
+
+.analy1 {
+  background-color: #45a049;
+}
+
+.analy2 {
+  background-color: rgb(107, 117, 211);
+}
+
+.analy3 {
+  background-color: rgb(233, 189, 107);
+}
+.in1 {
+  background-color: green;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  
+}
+.in2 {
+  background-color: blue;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  
+}
+.in3 {
+  background-color: orange;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  
 }
 
 table {
@@ -54,6 +128,7 @@ td.btn-td {
   display: flex;
   flex-direction: row;
   flex: 1fr 1fr 1fr;
+  
 }
 
 th {
@@ -66,7 +141,6 @@ tr:hover {
 }
 
 .btn {
-  background-color: #4CAF50;
   color: white;
   padding: 8px 12px;
   border: none;
@@ -75,10 +149,19 @@ tr:hover {
   margin-right: 10px; /* Add margin to the right */
 }
 
-.btn:hover {
+.update-btn {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  background-color: #59f046;
+}
+.update-btn:hover {
   background-color: #45a049;
 }
 .view-btn {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+  font-size: 20px;
   background-color: #682eee;
 }
 .view-btn:hover {
@@ -86,6 +169,9 @@ tr:hover {
 }
 
 .delete-btn {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+  font-size: 20px;
   background-color: #f44336;
 }
 
@@ -238,8 +324,7 @@ header {
     background-color: rgba(255, 255, 255, 0.1);
   }
   .dropdown {
-    position: relative;
-    display: inline-block;
+    margin-top: -8px;
   }
   
   .dropbtn {

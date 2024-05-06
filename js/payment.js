@@ -26,3 +26,4 @@ document.getElementById('sign-in-button').addEventListener('click', function() {
     const password = document.getElementById('password').value;
     togglePopup('sign-in-popup'); // Close Sign-in popup after processing
 });
+ 

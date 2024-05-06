@@ -18,9 +18,9 @@
     </div>
     <nav>
         <ul>
-            <li><a href="#">Ongoing Flights</a></li>
-            <li><a href="#">Feedback</a></li>
-            <li><a href="#">User</a></li>
+            <li><a href="./admin_ui/admin_flights.php">Flights</a></li>
+            <li><a href="./admin_ui/admin_contact.php">Contact</a></li>
+            <li><a href="./admin_ui/admin_user.php">User</a></li>
             <?php
             session_start(); // Start the session
             if(isset($_SESSION['username'])) {
@@ -43,7 +43,34 @@
 <main>
 
 <div class="analytics">
-<h1 class="h1-anal">ANALYTICS</h1>
+    <img class="anal-logo" src="/assets/images/data-analytics.png" alt="">
+    <h1 class="h1-anal">ANALYTICS</h1>
+</div>
+<div class="flex-analy">
+    <div class="analy1">
+        <div class="in1">
+            <img style="width: 100px; height: 100px;" src="/assets/images/profit.png" alt="">
+        </div>
+        <div>
+            <p>TOTAL AMOUNT</p>
+        </div>
+    </div>
+    <div class="analy2">
+        <div class="in2">
+        <img style="width: 100px; height: 100px;" src="/assets/images/multiple-users-silhouette.png" alt="">
+        </div>
+        <div class="total">
+            <p>TOTAL USERS</p>
+        </div>
+    </div>
+    <div class="analy3">
+        <div class="in3">
+        <img style="width: 100px; height: 100px;" src="/assets/images/chat.png" alt="">
+        </div>
+        <div>
+            <p>TOTAL COMMENTS</p>
+        </div>
+    </div>
 </div>
 <div class="main-container">
     
