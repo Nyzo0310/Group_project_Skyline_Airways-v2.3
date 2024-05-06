@@ -15,7 +15,7 @@ $destination = isset($_GET['destination']) ? htmlspecialchars($_GET['destination
   </head>
   <body>
 
-    <header>
+  <header>
       <div class="logo">
           <img src="./assets/images/logo.jpg" alt="Airline Logo">
           <div class="title">
@@ -35,7 +35,7 @@ $destination = isset($_GET['destination']) ? htmlspecialchars($_GET['destination
                   echo '<div class="dropdown">';
                   echo '<button class="dropbtn">Hello, ' . $_SESSION['username'] . '</button>';
                   echo '<div class="dropdown-content">';
-                  echo '<a href="#">Profile</a>';
+                  echo '<a href="profile.php">Profile</a>';
                   echo '<a href="logout.php" class="logout">Logout</a>';
                   echo '</div>';
                   echo '</div>';

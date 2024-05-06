@@ -1,0 +1,234 @@
+/* profile.css */
+* {
+    font-family: 'Montserrat', sans-serif; /* Use the Montserrat font */
+}
+body {
+    background-image: url("../assets/images/contact");
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-attachment: fixed; 
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    position: relative; /* Add position relative */
+  }
+  body:before {
+    content: "";
+    background-color: rgba(0, 0, 0, 0.5); /* Transparent gray color */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Place the pseudo-element behind other content */
+  }
+
+.container {
+    max-width: 600px;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info {
+    margin-bottom: 30px;
+}
+
+.profile-info p {
+    margin: 5px 0;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.edit-profile-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-profile-button:hover {
+    background-color: #0056b3;
+}
+
+/* Header Styles */
+header {
+    font-style: normal;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999999;
+    padding: 10px 20px; /* Added padding */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.title h1 {
+    text-align: left;
+    font-size: 26px;
+    margin: 0;
+    color: #fff;
+    font-size: 20px;
+    justify-content: left;
+    width: 400px;
+    font-family: 'Montserrat', sans-serif; /* Use the Montserrat font */
+    font-weight: 500; /* Adjust font weight as needed */ 
+}
+
+nav {
+    max-width: 1300px; /* Adjust the max-width value as needed */
+    width: 100%;
+    padding: 1.3rem 2rem; /* Increase the padding to add more space */
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Montserrat', sans-serif; /* Use the Montserrat font */
+    transition: transform 0.3s ease-in-out; /* Add transition for transform property */
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    margin-left: auto; /* Align the nav ul content to the right */
+}
+
+nav li {
+    margin-top: 7px;
+}
+
+nav ul li:not(:last-child) {
+    margin-right: 5px; /* Add margin between list items */
+}
+
+nav ul li a {
+    font-size: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 5px 20px;
+    border-radius: 5px;
+    color: white; /* Base color */
+    transition: color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Add transform transition */
+}
+
+nav ul li a:hover {
+    cursor: pointer;
+    color: yellow; /* Bright color on hover */
+    transform: translateZ(5px); /* Move menu item forward on hover */
+}
+
+/* End of Header Styles */
+
+/* Centering the main content */
+.profile-picture-container {
+    display: flex;
+    flex: 1fr;
+    z-index: 999;
+    max-width: 200px; /* Set maximum width */
+    max-height: 200px; /* Set maximum height */
+}
+
+.profile-picture {
+    max-width: 100%; /* Ensure image fits within container */
+    max-height: 100%; /* Ensure image fits within container */
+    object-fit: contain; /* Maintain aspect ratio */
+    margin-left: 160px;
+    margin-top: -10px;
+
+}
+.flaticon-icon {
+    width: 40px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 10px;
+}
+.container h1 {
+    text-align: 10px;
+    margin-left: 30px;
+
+}
+.strong_font {
+    margin-right: 10px;
+}
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 600px;
+}
+
+/* Redesigning the main div */
+.container {
+    max-width: 600px;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+    animation: slideToLeft 0.5s ease forwards;
+    animation-duration: 1s;
+}
+@keyframes slideToLeft {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+.profile-picture-label {
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.profile-info p {
+    margin: 10px 0;
+    font-size: 20px;
+    margin: 1.7rem 2rem;
+}
+
+.button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.edit-profile-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-profile-button:hover {
+    background-color: #0056b3;
+}
