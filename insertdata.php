@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Insert main passenger
     $stmt_main_passenger = $conn->prepare("INSERT INTO main_passengers (first_name, last_name, email, contact_number, dob, seat, accommodation, ticket_price, total_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt_main_passenger->bind_param("ssssssddd", $first_name_main, $last_name_main, $email_main, $contact_number_main, $dob_main, $seat_main, $accommodation_main, $ticket_price_main, $total_price_main);
+    $stmt_main_passenger->bind_param("sssssssdd", $first_name_main, $last_name_main, $email_main, $contact_number_main, $dob_main, $seat_main, $accommodation_main, $ticket_price_main, $total_price_main);
 
     // Retrieve main passenger details from $_POST array
     $first_name_main = $_POST['first_name_1'] ?? null;
@@ -70,11 +70,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 
     // Redirect to a thank you page or wherever you want
-    header("Location: confirm_booking.php");
+    header("Location: pay_success.php");
     exit();
 } else {
 
-    header("Location: booking.php");
+    header("Location: confirm_booking.php");
     exit();
 }
 ?>

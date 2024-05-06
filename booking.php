@@ -76,7 +76,7 @@ if ($result->num_rows > 0) {
 <main>
     <div class="booking-details">
         <h2>Trip Summary of Flight - #<?php echo $flight['flight_number']; ?></h2>
-        <table>
+        <table class="tbl_booking">
             <tr>
                 <td><strong>Flight Number:</strong></td>
                 <td><?php echo $flight['flight_number']; ?></td>

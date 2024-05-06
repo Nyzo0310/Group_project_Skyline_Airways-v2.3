@@ -119,6 +119,7 @@ echo '</div>';
 echo '</div>';
 // Add a hidden input field to capture the displayed ticket price for the main passenger
 echo '<input type="hidden" name="displayed_ticket_price_1" value="' . $ticket_price . '">';
+echo '<input type="hidden" name="displayed_ticket_price_'. $i .'" value="' . $ticket_price . '">';
 
     
     // Add the ticket price for this passenger to the total ticket price

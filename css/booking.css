@@ -1,5 +1,5 @@
 body{
-  background-color: #c4b5b5;
+  background-color: #ece2e2;
 }
 /* Style for the table */
 table {
@@ -222,6 +222,13 @@ main {
     display: flex;
     flex-wrap: wrap;
     
+    
+}
+
+.tbl_booking {
+  
+  border: solid rgb(133, 129, 129) 2px;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.9);
 }
 
 .booking-details h2 {

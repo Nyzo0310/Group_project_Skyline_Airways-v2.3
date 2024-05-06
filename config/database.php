@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database_name = "fbooking";
+$database_name = "fligthbooking";
 
 // Attempt to connect to the database
 $conn = new mysqli($servername, $username, $password, $database_name);

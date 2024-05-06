@@ -185,6 +185,7 @@ nav .dropdown .dropbtn:hover {
             align-items: center;
             justify-content: space-evenly;
             box-shadow: 0 4px 8px 0 rgba(0,0,0,0.25);
+            cursor: pointer;
         }
         .container-heading {
             margin-bottom: 20px;
@@ -218,33 +219,17 @@ nav .dropdown .dropbtn:hover {
     </style>
 </head>
 <body>
-<header>
-    <div class="logo">
-        <img src="./assets/images/logo.jpg" alt="Airline Logo">
-        <div class="title">
-            <h1>Skyline Payment</h1>
-        </div>
-    </div>
-    <nav>
-        <ul>
-            <li><a href="./index.php">Dashboard</a></li>
-            <li><a href="./flights.php">Flight</a></li>
-            <li><a href="./contact.php">Contact</a></li>
-        </ul>
-    </nav>
-</header>
 
 
     <main>
-        <div class="container">
+        <div onclick="index.php" class="container"> 
             <h3 class="container-heading">Payment Successful!</h3>
-            <img class="container-image" src="https://res.cloudinary.com/dmnazxdav/image/upload/v1599736321/tick_hhudfj.svg" alt="Payment Successful">
+            <img class="container-image" src="/assets/images/chek.gif" alt="Payment Successful">
             <h3 class="container-welcome">Thank you for choosing us</h3>
             <p class="container-text">An automated payment receipt will be sent to your registered email.</p>
+            <button href="/index.php">Back to Dashboard</button>
         </div>
     </main>
-    <footer>
-        <p>&copy; 2024 Skyline Airways PH. All rights reserved.</p>
-    </footer>
+    
 </body>
 </html>
