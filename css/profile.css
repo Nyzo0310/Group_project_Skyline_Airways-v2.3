@@ -31,7 +31,7 @@ body {
 .container {
     max-width: 600px;
     background-color: #ffffff;
-    padding: 40px;
+    padding: 50px;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
@@ -179,28 +179,61 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 600px;
 }
 
-/* Redesigning the main div */
 .container {
-    max-width: 600px;
+    max-width: 800px;
+    width: 100%;
     background-color: #ffffff;
-    padding: 40px;
+    padding-right: 300px;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    margin-top: 50px;
-    animation: slideToLeft 0.5s ease forwards;
-    animation-duration: 1s;
+    margin: 0 auto;
+    display: flex; /* Added */
+    justify-content: space-between; /* Added */
+    align-items: flex-start; /* Added */
+    animation-name: fadeToLeft; /* Add animation name */
+    animation-duration: 1s; /* Add animation duration */
 }
-@keyframes slideToLeft {
+
+@keyframes fadeToLeft {
     from {
-        transform: translateX(0);
+        opacity: 0;
+        transform: translateX(400px); /* Start from the right */
     }
     to {
-        transform: translateX(-100%);
+        opacity: 1;
+        transform: translateX(0); /* Move to the left */
     }
 }
+
+
+.profile-info-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+.edit-profile-button {
+    margin-top: 260px;
+    margin-left: 250px;
+    font-size: 16px;
+    padding: 12px 24px;
+    background-color: #e3ebe4;
+    color: black;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: absolute;
+}
+
+.edit-profile-button:hover {
+    background-color: #46b86c; /* Darken color on hover */
+}
+
 .profile-picture-label {
     font-size: 22px;
     font-weight: bold;
@@ -219,16 +252,42 @@ main {
     margin-top: 20px;
 }
 
-.edit-profile-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 999999; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Add shadow */
+  }
+  
+  /* Close button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: color 0.3s ease; /* Add transition effect */
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #555; /* Darken color on hover/focus */
+    text-decoration: none;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.edit-profile-button:hover {
-    background-color: #0056b3;
-}
+  }
+  
