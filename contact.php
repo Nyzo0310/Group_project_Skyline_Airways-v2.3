@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,33 +19,35 @@
     <nav>
         <ul>
             <li><a href="flights.php">Flights</a></li>
-            <li><a href="#">Analytics</a></li>
         </ul>
     </nav>
 </header>
 
 <div class="container">
-    <h1>Contact Us</h1>
-    <form action="#" method="post" id="contactForm">
-        <label for="name">Your Name:</label>
-        <input type="text" id="name" name="name" required>
+        <h1>Contact Us</h1>
+        <form action="./models/message.php" method="post" id="contactForm">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required>
 
-        <label for="email">Your Email:</label>
-        <input type="email" id="email" name="email" required>
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" required>
 
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="6" required></textarea>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
 
-        <input type="submit" value="Submit">
-    </form>
+            <input type="submit" value="Submit">
+        </form>
 
-    <!-- Notification -->
-    <div class="notification" id="notification"></div>
+        <!-- Display success message if any -->
+        <?php if (isset($success_message)): ?>
+            <div class="success-message"><?php echo $success_message; ?></div>
+        <?php endif; ?>
 
-    <div class="back-button">
-        <a href="index.php">Back to dashboard</a>
+        <div class="back-button">
+            <a href="index.php">Back to dashboard</a>
+        </div>
     </div>
-</div>
+
 <footer>
     <p>&copy; 2024 Skyline Airways PH. All rights reserved.</p>
 </footer>
