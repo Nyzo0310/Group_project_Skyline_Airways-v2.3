@@ -27,23 +27,6 @@ body {
     height: 100%;
     z-index: -1; /* Place the pseudo-element behind other content */
   }
-
-.container {
-    max-width: 600px;
-    background-color: #ffffff;
-    padding: 50px;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-}
-
-.profile-info {
-    margin-bottom: 30px;
-}
-
-.profile-info p {
-    margin: 5px 0;
-}
-
 .button-container {
     text-align: center;
     margin-top: 20px;
@@ -145,79 +128,129 @@ nav ul li a:hover {
 
 /* End of Header Styles */
 
-/* Centering the main content */
 .profile-picture-container {
-    display: flex;
-    flex: 1fr;
-    z-index: 999;
-    max-width: 200px; /* Set maximum width */
-    max-height: 200px; /* Set maximum height */
+    position: absolute;
+    top: 600px; /* Adjust this value to move it up or down */
+    left: 270px; /* Center horizontally */
+    transform: translateX(-50%);
+    z-index: 999; /* Ensure it's above other content */
+    transition: top 0.3s ease; /* Add transition effect for smoother movement */
 }
 
 .profile-picture {
-    max-width: 100%; /* Ensure image fits within container */
-    max-height: 100%; /* Ensure image fits within container */
+    position: relative;
+    max-width: 200px; /* Set maximum width */
+    max-height: 200px; /* Set maximum height */
     object-fit: contain; /* Maintain aspect ratio */
-    margin-left: 160px;
-    margin-top: -10px;
-
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Add transition for smoother zoom effect */
 }
+
+/* Add this CSS to achieve the zoom effect */
+.profile-picture-container.zoomed {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+.profile-picture-container.zoomed .profile-picture {
+    max-width: none; /* Set maximum width to none to display the image in its original size */
+    max-height: none; /* Set maximum height to none */
+    width: auto; /* Set width to auto to maintain original aspect ratio */
+    height: auto; /* Set height to auto */
+    cursor: zoom-out; /* Change cursor to indicate that clicking will zoom out */
+}
+.profile-picture-container:hover .profile-picture {
+    transform: scale(1.2); /* Zoom in on hover */
+}
+
 .flaticon-icon {
     width: 40px; /* Adjust the width as needed */
     height: auto; /* Maintain aspect ratio */
     margin-right: 10px;
+
 }
 .container h1 {
     text-align: 10px;
     margin-left: 30px;
 
 }
-.strong_font {
-    margin-right: 10px;
-}
 main {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-right: 850px;
 }
 
 .container {
-    max-width: 800px;
+    position: relative; /* Make the container relatively positioned */
+    margin-top: 200px; /* Adjust margin to create space for the picture */
+    padding-bottom: 140px;
+    max-width: 850px;
     width: 100%;
     background-color: #ffffff;
-    padding-right: 300px;
+    padding-right: 130px;
     border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    margin: 0 auto;
-    display: flex; /* Added */
-    justify-content: space-between; /* Added */
-    align-items: flex-start; /* Added */
-    animation-name: fadeToLeft; /* Add animation name */
-    animation-duration: 1s; /* Add animation duration */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+    margin: 50px auto 0; /* Added top margin */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    animation-name: fadeToLeft;
+    animation-duration: 1s;
 }
 
 @keyframes fadeToLeft {
     from {
         opacity: 0;
-        transform: translateX(400px); /* Start from the right */
+        transform: translateX(400px);
     }
     to {
         opacity: 1;
-        transform: translateX(0); /* Move to the left */
+        transform: translateX(0);
     }
 }
 
 
 .profile-info-right {
+    padding-top: 68px;
+    margin-right: 150px; /* Adjust this value to increase the space to the right */
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
 }
+.profile-info {
+    padding-right: 250px;
+    width: 100%; /* Adjust the width percentage as needed */
+}
+
+
+.line-input {
+    font-size: 20px;
+    border: none; /* Remove all borders */
+    border-bottom: 1px solid black; /* Add bottom border */
+    outline: none; /* Remove outline */
+    background-color: transparent; /* Transparent background */
+    padding: 0; /* Remove padding */
+    margin: 4px 0; /* Adjust margin to create space */
+    width: 100%; /* Set width to 100% */
+    box-sizing: border-box; /* Include border in width calculation */
+}
+
+/* Optional: Add focus styles */
+.line-input:focus {
+    border-bottom: 2px solid blue; /* Change bottom border color on focus */
+}
+
+
 .edit-profile-button {
-    margin-top: 260px;
-    margin-left: 250px;
+    max-width: 140px;
+    width: 100%;
+    margin-top: 80px;
+    margin-left: -40px;
     font-size: 16px;
     padding: 12px 24px;
     background-color: #e3ebe4;
@@ -233,11 +266,33 @@ main {
 .edit-profile-button:hover {
     background-color: #46b86c; /* Darken color on hover */
 }
-
+.save-profile-button {
+    max-width: 145px;
+    width: 100%;
+    margin-top: 80px;
+    margin-left: 120px;
+    font-size: 16px;
+    padding: 12px 24px;
+    background-color: #e3ebe4;
+    color: black;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    }
+    
+.save-profile-button:hover {
+    background-color: #46b86c; /* Darken color on hover */
+}
 .profile-picture-label {
+    margin-left: 30px; /* Adjust this value to move the label further to the left */
+    margin-right: 0; /* Remove margin to the right */
+    padding-right: 0; /* Remove padding to the right */
     font-size: 22px;
     font-weight: bold;
-    text-align: center;
+    text-align: left;
     margin-top: 10px;
 }
 

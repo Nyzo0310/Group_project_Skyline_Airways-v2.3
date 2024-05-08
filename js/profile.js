@@ -24,3 +24,13 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+// Get the image container and the image element
+var profilePictureContainer = document.getElementById('profile-picture-container');
+var profilePicture = document.getElementById('profile-picture');
+
+// Add a click event listener to the image container
+profilePictureContainer.addEventListener('click', function() {
+    // Toggle a class to indicate whether the image is zoomed or not
+    profilePictureContainer.classList.toggle('zoomed');
+});
+
