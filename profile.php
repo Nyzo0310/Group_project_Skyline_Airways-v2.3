@@ -1,81 +1,81 @@
 <?php
-    // Start session
-    session_start();
+// Start session
+session_start();
 
-    // Check if form is submitted
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Retrieve form data
-        $gender = $_POST['gender'];
-        $dob = $_POST['dob'];
-        $age = $_POST['age'];
-        $status = $_POST['status'];
-        $phone = $_POST['phone'];
-        $nationality = $_POST['nationality'];
-        
-        // Store values in session variables
+// Check if form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve form data
+    $gender = isset($_POST['gender']) ? $_POST['gender'] : '';
+    $dob = isset($_POST['dob']) ? $_POST['dob'] : '';
+    $age = isset($_POST['age']) ? $_POST['age'] : '';
+    $status = isset($_POST['status']) ? $_POST['status'] : '';
+    $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
+    $nationality = isset($_POST['nationality']) ? $_POST['nationality'] : '';
+
+    // Store values in session variables
+    $_SESSION['form_data'] = [
+        'gender' => $gender,
+        'dob' => $dob,
+        'age' => $age,
+        'status' => $status,
+        'phone' => $phone,
+        'nationality' => $nationality
+    ];
+
+    // Redirect to prevent form resubmission
+    header("Location: ".$_SERVER['PHP_SELF']);
+    exit;
+}
+
+// Check if user is logged in
+if (isset($_SESSION['username'])) {
+    // Database connection
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database_name = "flightbooking";
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $database_name);
+
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Retrieve email of logged-in user from session
+    $email = $_SESSION['username'];
+
+    // Retrieve saved form data from the database, if available
+    $sql = "SELECT gender, dob, age, status, phone, nationality FROM logindata WHERE reg_email = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        // Store retrieved data in session variables
         $_SESSION['form_data'] = [
-            'gender' => $gender,
-            'dob' => $dob,
-            'age' => $age,
-            'status' => $status,
-            'phone' => $phone,
-            'nationality' => $nationality
+            'gender' => $row['gender'],
+            'dob' => $row['dob'],
+            'age' => $row['age'],
+            'status' => $row['status'],
+            'phone' => $row['phone'],
+            'nationality' => $row['nationality']
         ];
-
-        // Redirect to prevent form resubmission
-        header("Location: ".$_SERVER['PHP_SELF']);
-        exit;
     }
 
-    // Check if user is logged in
-    if(isset($_SESSION['username'])) {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Database connection
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $database_name = "flightbooking";
-
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $database_name);
-
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-
-            // Retrieve email of logged-in user from session
-            $email = $_SESSION['username'];
-
-            // Retrieve form data
-            $gender = $_POST['gender'];
-            $dob = $_POST['dob'];
-            $age = $_POST['age'];
-            $status = $_POST['status'];
-            $phone = $_POST['phone'];
-            $nationality = $_POST['nationality'];
-
-            // Prepare and execute SQL INSERT statement
-            $sql = "UPDATE logindata SET gender=?, dob=?, age=?, status=?, phone=?, nationality=? WHERE reg_email=?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ssissss", $gender, $dob, $age, $status, $phone, $nationality, $email);
-            if ($stmt->execute()) {
-                $successMessage = "Profile updated successfully."; // Set success message
-            } else {
-                $successMessage = "Error updating profile: " . $conn->error;
-            }
-            // Clear session data after successful update
-            unset($_SESSION['form_data']);
-
-            $stmt->close();
-            $conn->close();
-        }
-    } else {
-        // Redirect if user is not logged in
-        header("Location: login.php");
-        exit();
-    }
+    $stmt->close();
+    $conn->close();
+} else {
+    // Redirect if user is not logged in
+    header("Location: login.php");
+    exit();
+}
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -246,7 +246,9 @@
 
                 // Display profile info (Gender, Date of Birth, Age, Status, Phone Number, and Nationality)
                 echo '<div class="profile-info">';
-                echo '<p><strong class="strong_font">Gender :</strong> 
+                echo '<p><strong class="strong_font">Gender :';
+                echo (!isset($savedFormData['gender']) || empty($savedFormData['gender'])) ? ' <b style="color: red">*</b>' : ''; 
+                echo '</strong> 
                 <select name="gender" class="line-input" required>';
                 echo '<option value="">Select Gender</option>';
                 echo '<option value="male"'; 
@@ -258,12 +260,18 @@
                 echo '</select>
                 </p>';
 
-                echo '<p><strong class="strong_font">Date of Birth :</strong> 
+                echo '<p><strong class="strong_font">Date of Birth :';
+                echo (!isset($savedFormData['dob']) || empty($savedFormData['dob'])) ? ' <b style="color: red">*</b>' : ''; 
+                echo '</strong> 
                 <input type="date" name="dob" class="line-input" value="' . htmlspecialchars($savedFormData['dob'] ?? '') . '" required>
                 </p>';
 
-                echo '<p><strong class="strong_font">Age :</strong> <input type="text" name="age" class="line-input" placeholder="Please enter your age" value="' . htmlspecialchars($savedFormData['age'] ?? '') . '"></p>';
-                echo '<p><strong class="strong_font">Status :</strong> 
+                echo '<p><strong class="strong_font">Age :';
+                echo (!isset($savedFormData['age']) || empty($savedFormData['age'])) ? ' <b style="color: red">*</b>' : ''; 
+                echo '</strong> <input type="text" name="age" class="line-input" placeholder="Please enter your age" value="' . htmlspecialchars($savedFormData['age'] ?? '') . '"></p>';
+                echo '<p><strong class="strong_font">Status :';
+                echo (!isset($savedFormData['status']) || empty($savedFormData['status'])) ? ' <b style="color: red">*</b>' : ''; 
+                echo '</strong> 
                 <select name="status" class="line-input" required>';
                 echo '<option value="">Select Status</option>';
                 $statuses = array("Married", "Single", "Divorced", "Widowed", "Separated", "In a relationship", "It\'s Complicated");
@@ -275,8 +283,12 @@
                 echo '</select>
                 </p>';
 
-                echo '<p><strong class="strong_font">Phone Number :</strong> <input type="text" name="phone" class="line-input" placeholder="Please enter your phone number" value="' . htmlspecialchars($savedFormData['phone'] ?? '') . '"></p>';
-                echo '<p><strong class="strong_font">Nationality:</strong> 
+                echo '<p><strong class="strong_font">Phone Number :';
+                echo (!isset($savedFormData['phone']) || empty($savedFormData['phone'])) ? ' <b style="color: red">*</b>' : ''; 
+                echo '</strong> <input type="text" name="phone" class="line-input" placeholder="Please enter your phone number" value="' . htmlspecialchars($savedFormData['phone'] ?? '') . '"></p>';
+                echo '<p><strong class="strong_font">Nationality:';
+                echo (!isset($savedFormData['nationality']) || empty($savedFormData['nationality'])) ? ' <b style="color: red">*</b>' : ''; 
+                echo '</strong> 
                 <select name="nationality" class="line-input" required>';
                 echo '<option value="">Select Nationality</option>';
                 $nationalities = array("Filipino", "Filipino-American", "Filipino-British", "Filipino-Canadian", "Dual Citizen (Filipino and another nationality)", "Other");
@@ -290,6 +302,7 @@
 
                 echo '</div>';
                 ?>
+
 
             </div>
 
