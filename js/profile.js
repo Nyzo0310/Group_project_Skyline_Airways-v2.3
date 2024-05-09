@@ -34,3 +34,4 @@ profilePictureContainer.addEventListener('click', function() {
     profilePictureContainer.classList.toggle('zoomed');
 });
 
+

@@ -345,4 +345,16 @@ main {
     text-decoration: none;
     cursor: pointer;
   }
-  
+  .success-message {
+    max-width: 200px;
+    max-width: 100%;
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+}
+.hidden {
+    display: none;
+}
