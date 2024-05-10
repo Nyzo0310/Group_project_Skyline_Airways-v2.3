@@ -33,7 +33,34 @@ if ($result->num_rows > 0) {
     header("Location: flights.php");
     exit(); // Stop further execution
 }
+
+// Check if the trip summary already exists for the logged-in user and the selected flight
+$user_email = $_SESSION['username'];
+$checkSql = "SELECT * FROM tripsum WHERE trip_id = '$flight_id' AND trip_email = '$user_email'";
+$checkResult = $conn->query($checkSql);
+
+if ($checkResult->num_rows > 0) {
+    // If trip summary already exists, redirect the user to a page indicating that the trip has already been confirmed
+    header("Location: trip_already_confirmed.php");
+    exit(); // Stop further execution
+}
+
+// Insert trip summary data into the database
+$insertSql = "INSERT INTO tripsum (trip_id, trip_fno, trip_dep, trip_depdate, trip_deptime, trip_arrival, trip_ardate, trip_artime, trip_price, trip_email) 
+              VALUES ('$flight_id', '{$flight['flight_number']}', '{$flight['departure_location']}', '{$_GET['departure_date']}', '{$flight['Departure-Time']}', '{$flight['arrival_location']}', '{$_GET['arrival_date']}', '{$flight['Arrival-Time']}', '{$flight['price']}', '{$_SESSION['username']}')";
+
+if ($conn->query($insertSql) === TRUE) {
+    echo "Trip summary inserted successfully.";
+} else {
+    echo "Error: " . $insertSql . "<br>" . $conn->error;
+}
+
+// Close the database connection
+$conn->close();
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">

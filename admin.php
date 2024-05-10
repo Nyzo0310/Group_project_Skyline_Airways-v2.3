@@ -7,6 +7,8 @@
     <title>Skyline - Admin Dashboard</title>
     <link rel="icon" href="./assets/images/favicon.jpg">
     <link rel="stylesheet" href="./css/admin_dasboard.css">
+    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css" >
+    
 </head>
 <body>
 <header class="header1">
@@ -107,7 +109,7 @@
         } else {
             // Handle the case where the query fails by setting total comments to 0
             $total_comments = 0;
-}
+                }
 
     
 ?>
@@ -118,7 +120,7 @@
                 <img style="width: 100px; height: 100px;" src="/assets/images/profit.png" alt="">
             </div>
             <div class="amount">
-                <p>TOTAL AMOUNT</p>
+                <p>TOTAL SALES</p>
                 <h1><?php echo '₱' . number_format($total_amount, 0, '.', ','); ?></h1>
             </div>
         </div>
@@ -136,8 +138,8 @@
                 <img style="width: 100px; height: 100px;" src="/assets/images/chat.png" alt="">
             </div>
             <div class="comments">
-                <p>TOTAL COMMENTS</p>
-                <h1><?php echo $total_comments; ?></h1>
+                <p>TOTAL MESSAGES</p>
+                <h1><?php echo number_format( $total_comments, 0, '.', ',');?></h1>
             </div>
         </div>
     </div>
@@ -152,29 +154,51 @@
     $stmt_get_main_passenger->execute();
     $result_main_passenger = $stmt_get_main_passenger->get_result();
 
-    echo "<h2>Main Passenger Data</h2>"; // Title for main passenger data
-    
+    ?>
+    <h2>Main Passenger Data</h2>
+    <?php
     // Check if there are no main passengers
     if ($result_main_passenger->num_rows === 0) {
-        echo "<p>No booked Customer</p>";
+    ?>
+        <p>No booked Customer</p>
+    <?php
     } else {
-        echo "<table>";
-        echo "<tr><th>Main Passenger ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Contact Number</th><th>Seat</th><th>Accommodation</th><th>Total Price</th><th>Action</th></tr>";
-        while ($main_passenger_data = $result_main_passenger->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td>" . $main_passenger_data['MainPassenger'] . "</td>";
-            echo "<td>" . $main_passenger_data['first_name'] . "</td>";
-            echo "<td>" . $main_passenger_data['last_name'] . "</td>";
-            echo "<td>" . $main_passenger_data['email'] . "</td>";
-            echo "<td>" . $main_passenger_data['contact_number'] . "</td>";
-            echo "<td>" . $main_passenger_data['seat'] . "</td>";
-            echo "<td>" . $main_passenger_data['accommodation'] . "</td>";
-            echo "<td>₱ " . $main_passenger_data['total_price'] . "</td>";
-            echo "<td class='btn-td'><button class='btn update-btn'>Update</button> <button class='btn view-btn'>View</button>";
-            echo "<button class='btn delete-btn'>Delete</button></td>";
-            echo "</tr>";
-        }
-        echo "</table>";
+    ?>
+        <table>
+            <tr>
+                <th>Main Passenger ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Contact Number</th>
+                <th>Seat</th>
+                <th>Accommodation</th>
+                <th>Total Price</th>
+                <th>Action</th>
+            </tr>
+            <?php
+            while ($main_passenger_data = $result_main_passenger->fetch_assoc()) {
+            ?>
+                <tr>
+                    <td><?= $main_passenger_data['MainPassenger'] ?></td>
+                    <td><?= $main_passenger_data['first_name'] ?></td>
+                    <td><?= $main_passenger_data['last_name'] ?></td>
+                    <td><?= $main_passenger_data['email'] ?></td>
+                    <td><?= $main_passenger_data['contact_number'] ?></td>
+                    <td><?= $main_passenger_data['seat'] ?></td>
+                    <td><?= $main_passenger_data['accommodation'] ?></td>
+                    <td>₱ <?= $main_passenger_data['total_price'] ?></td>
+                    <td class="btn-td">
+                        <button class="btn update-btn" onclick="confirmBooking(<?php echo $main_passenger_data['MainPassenger']; ?>)">Confirm</button>
+                        <button class="btn view-btn" data-main-passenger="<?= htmlspecialchars(json_encode($main_passenger_data), ENT_QUOTES, 'UTF-8') ?>">View</button>
+                        <button class="btn delete-btn">Decline</button>
+                    </td>
+                </tr>
+            <?php
+            }
+            ?>
+        </table>
+    <?php
     }
 
     // Retrieve and display other passengers' data
@@ -182,34 +206,80 @@
     $stmt_get_other_passengers->execute();
     $result_other_passengers = $stmt_get_other_passengers->get_result();
 
-    echo "<h2>Other Passengers Data</h2>"; // Title for other passengers data
-    
+    ?>
+    <h2>Other Passengers Data</h2>
+    <?php
     // Check if there are no other passengers
     if ($result_other_passengers->num_rows === 0) {
-        echo "<p>No booked Customer</p>";
+    ?>
+        <p>No booked Customer</p>
+    <?php
     } else {
-        echo "<table>";
-        echo "<tr><th>Main Passenger ID</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Contact Number</th><th>Seat</th><th>Accommodation</th><th>Action</th></tr>";
-        while ($row = $result_other_passengers->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td>" . $row['MainPassenger'] . "</td>";
-            echo "<td>" . $row['first_name'] . "</td>";
-            echo "<td>" . $row['last_name'] . "</td>";
-            echo "<td>" . $row['email'] . "</td>";
-            echo "<td>" . $row['contact_number'] . "</td>";
-            echo "<td>" . $row['seat'] . "</td>";
-            echo "<td>" . $row['accommodation'] . "</td>";
-            
-            echo "<td><button class='btn update-btn'>Update</button> <button class='btn view-btn'>View</button>";
-            echo "<button class='btn delete-btn'>Delete</button></td>";
-            echo "</tr>";
-        }
-        echo "</table>";
+    ?>
+        <table>
+            <tr>
+                <th>Other Passenger ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Contact Number</th>
+                <th>Seat</th>
+                <th>Accommodation</th>
+                <th>Action</th>
+            </tr>
+            <?php
+            while ($row = $result_other_passengers->fetch_assoc()) {
+            ?>
+                <tr>
+                    <td><?= $row['MainPassenger'] ?></td>
+                    <td><?= $row['first_name'] ?></td>
+                    <td><?= $row['last_name'] ?></td>
+                    <td><?= $row['email'] ?></td>
+                    <td><?= $row['contact_number'] ?></td>
+                    <td><?= $row['seat'] ?></td>
+                    <td><?= $row['accommodation'] ?></td>
+                    <td class="btn-td">
+                        <button class="btn update-btn">Confirm</button>
+                        <button class="btn view-btn">View</button>
+                        <button class="btn delete-btn">Decline</button>
+                    </td>
+                </tr>
+            <?php
+            }
+            ?>
+        </table>
+    <?php
     }
     ?>
+    <tbody id="result">
+
+    </tbody>
+
+    <!-- Modal Structure -->
+    <div class="modal fade" id="view-details">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Booking Details</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body" id="modal-body"></div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
+
 </main>
-<script src="./js/adminfunct.js"></script>
+    <script 
+        src="./js/adminfunct.js">
+    </script>
+    <script src="./assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

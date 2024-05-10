@@ -7,6 +7,7 @@
     <title>User</title>
     <link rel="stylesheet" href="../css/admin_ui_css/user.css">
     <link rel="icon" href="../assets/images/favicon.jpg">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css" >
 </head>
 <body>
 <header class="header1">
@@ -33,7 +34,7 @@
                 echo '</div>';
             } else {
                 // If the user is not logged in, display a login link
-                echo '<li><a href="login.php">Login</a></li>';
+                echo '<li><a href="../login.php">Login</a></li>';
             }
             function checkLoggedIn() {
                 if (!isset($_SESSION['username'])) {
@@ -55,4 +56,5 @@
     </div>
 </main>
 </body>
+<script src="../assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 </html>
