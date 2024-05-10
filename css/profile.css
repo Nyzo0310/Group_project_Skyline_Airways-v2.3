@@ -151,6 +151,9 @@ h2 {
   grid-column: 1 / span 2;
   margin-top: 20px;
 }
+.asterisk {
+  color: red;
+}
 
 label {
   font-weight: bold;

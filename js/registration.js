@@ -1,7 +1,7 @@
 //Location
 function display_province(regCode) {
     $.ajax({
-        url: './Models/ph_address.php',
+        url: './model/ph_address.php',
         type: 'POST',
         data: {
             'type': 'region',
@@ -16,7 +16,7 @@ function display_province(regCode) {
 
 function display_citymun(provCode) {
     $.ajax({
-        url: './Models/ph_address.php',
+        url: './model/ph_address.php',
         type: 'POST',
         data: {
             'type': 'province',
@@ -31,7 +31,7 @@ function display_citymun(provCode) {
 
 function display_brgy(citymunCode) {
     $.ajax({
-        url: './Models/ph_address.php',
+        url: './model/ph_address.php',
         type: 'POST',
         data: {
             'type': 'citymun',
