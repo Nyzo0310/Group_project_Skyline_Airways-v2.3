@@ -200,19 +200,19 @@ $brgyDesc = getBrgyDesc($brgyCode);
             <div class="grid">
                 <div class="ID">
                 <input type="image" name="idimg" id="idimg" src="data:image/jpeg;base64,<?php echo base64_encode($image_blob); ?>" alt="ID Picture"><br>
-                    <label for="id">ID Picture</label>
+                <label for="idimg">ID Picture</label>
                 </div>
       <div>
         <label for="Firstname">Name:</label>
         <input type="text" name="Firstname" id="Firstname" value="<?php echo $row['reg_firstname']; echo' ';  echo $row['reg_lastname'];?>" readonly>
         <label for="BDate">Birth Date</label>
-        <input type="date" name="date" id="date" value="<?php echo $row['dob']; ?>" readonly>
+        <input type="date" name="BDate" id="BDate" value="<?php echo $row['dob']; ?>" readonly>
         <label for="Age">Age:</label>
         <input type="text" name="Age" id="Age" value="<?php echo $row['age']; ?>" readonly>
         <label for="Gender">Gender:</label>
-        <input type="text" name="Gender" id="gender" value="<?php echo $row['gender']; ?>" readonly>
+        <input type="text" name="Gender" id="Gender" value="<?php echo $row['gender']; ?>" readonly>
         <label for="Status">Status:</label>
-        <input type="text" name="Status" id="status" value="<?php echo $row['status']; ?>" readonly>
+        <input type="text" name="Status" id="Status" value="<?php echo $row['status']; ?>" readonly>
         <label for="Phonenumber">Phone Number:</label>
         <input type="text" name="Phonenumber" id="Phonenumber" value="<?php echo $row['phone']; ?>" readonly>
         <label for="email">Email:</label>
@@ -280,7 +280,7 @@ $brgyDesc = getBrgyDesc($brgyCode);
                 ?>
             </select><br>
             <div class="col-md-12">
-                <label>Region : <b class="text-danger"></b></label>
+            <label for="EditRegion">Region : <s class="text-danger"></s></label>
                 <select name="EditRegion" id="EditRegion" onchange="display_province(this.value)" required class="form-control mt-2">
                     <option value="" disabled selected>-- SELECT REGION --</option>
                     <?php
@@ -300,19 +300,19 @@ $brgyDesc = getBrgyDesc($brgyCode);
                 </select>
             </div>
             <div class="col-md-12">
-                <label>Province : <b class="text-danger"></b></label>
+                <label for="EditProvince">Province : <b class="text-danger"></b></label>
                 <select name="EditProvince" id="EditProvince" onchange="display_citymun(this.value)" required class="form-control mt-2">
                     <option value="" disabled selected>-- SELECT PROVINCE --</option>
                 </select>
             </div>
             <div class="col-md-12">
-                <label>City / Municipality : <b class="text-danger"></b></label>
+                <label for="EditCitymun">City / Municipality : <b class="text-danger"></b></label>
                 <select name="EditCitymun" id="EditCitymun" onchange="display_brgy(this.value)" required class="form-control mt-2">
                     <option value="" disabled selected>-- SELECT CITY / MUNICIPALITY --</option>
                 </select>
             </div>
             <div class="col-md-12">
-                <label>Barangay : <b class="text-danger"></b></label>
+                <label for="EditBrgy">Barangay : <b class="text-danger"></b></label>
                 <select name="EditBrgy" id="EditBrgy" required class="form-control mt-2">
                     <option value="" disabled selected>-- SELECT BARANGAY --</option>
                 </select>
