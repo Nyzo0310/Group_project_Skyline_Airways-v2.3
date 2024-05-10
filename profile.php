@@ -113,29 +113,34 @@ $brgyDesc = getBrgyDesc($brgyCode);
         <h2>Profile Information</h2>
         <form>
             <div class="grid">
+            <label for="idimg">ID Picture</label>
                 <div class="ID">
                 <input type="image" name="idimg" id="idimg" src="data:image/jpeg;base64,<?php echo base64_encode($image_blob); ?>" alt="ID Picture"><br>
-                <label for="idimg">ID Picture</label>
-                </div>
+            </div>
       <div>
         <label for="Firstname">Name:</label>
         <input type="text" name="Firstname" id="Firstname" value="<?php echo $row['reg_firstname']; echo' ';  echo $row['reg_lastname'];?>" readonly>
         <label for="BDate">Birth Date</label>
         <input type="date" name="BDate" id="BDate" value="<?php echo $row['dob']; ?>" readonly>
-        <label for="Age">Age:</label>
-        <input type="text" name="Age" id="Age" value="<?php echo $row['age']; ?>" readonly>
-        <label for="Gender">Gender:</label>
-        <input type="text" name="Gender" id="Gender" value="<?php echo $row['gender']; ?>" readonly>
-        <label for="Status">Status:</label>
-        <input type="text" name="Status" id="Status" value="<?php echo $row['status']; ?>" readonly>
-        <label for="Phonenumber">Phone Number:</label>
-        <input type="text" name="Phonenumber" id="Phonenumber" value="<?php echo $row['phone']; ?>" readonly>
+        <label for="Age">Age: <b id="ageAsterisk" style="display: none;" class="required">*</b></label>
+            <input type="text" name="Age" id="Age" value="<?php echo $row['age']; ?>" readonly>
+            <b id="ageAsterisk" style="display: none;" class="required">*</b>
+        <label for="Gender">Gender: <b id="genderAsterisk" style="display: none;" class="required">*</b></label>
+            <input type="text" name="Gender" id="Gender" value="<?php echo $row['gender']; ?>" readonly>
+            <b id="genderAsterisk" style="display: none;" class="required">*</b>
+        <label for="Status">Status: <b id="statusAsterisk" style="display: none;" class="required">*</b></label>
+            <input type="text" name="Status" id="Status" value="<?php echo $row['status']; ?>" readonly>
+            <b id="statusAsterisk" style="display: none;" class="required">*</b>
+        <label for="Phonenumber">Phone Number: <b id="phoneAsterisk" style="display: none;" class="required">*</b></label>
+            <input type="text" name="Phonenumber" id="Phonenumber" value="<?php echo $row['phone']; ?>" readonly>
+            <b id="phoneAsterisk" style="display: none;" class="required">*</b>
         <label for="email">Email:</label>
         <input type="email" name="email" id="email" value="<?php echo $row['reg_email']; ?>" readonly>
       </div>
       <div class="secondcolumn">
-        <label for="Nationality">Nationality</label>
-        <input type="text" name="Nationality" id="Nationality" value="<?php echo $row['nationality']; ?>" readonly><br>
+      <label for="Nationality">Nationality: <b id="nationalityAsterisk" style="display: none;" class="required">*</b></label>
+            <input type="text" name="Nationality" id="Nationality" value="<?php echo $row['nationality']; ?>" readonly>
+            <b id="nationalityAsterisk" style="display: none;" class="required">*</b>
         <label for="Region">Region</label>
         <input type="text" name="Region" id="Region" value="<?php echo $regionDesc ?>" readonly><br>
         <label for="Province">Province</label>
@@ -165,8 +170,8 @@ $brgyDesc = getBrgyDesc($brgyCode);
             <label for="EditGender">Gender:</label>
             <select name="EditGender" id="EditGender" class="line-input" required>
             <option value="">Select Gender</option>
-            <option value="male" <?php if (isset($savedFormData['gender']) && $savedFormData['gender'] === 'male') echo 'selected'; ?>>Male</option>
-            <option value="female" <?php if (isset($savedFormData['gender']) && $savedFormData['gender'] === 'female') echo 'selected'; ?>>Female</option>
+            <option value="Male" <?php if (isset($savedFormData['gender']) && $savedFormData['gender'] === 'male') echo 'selected'; ?>>Male</option>
+            <option value="Female" <?php if (isset($savedFormData['gender']) && $savedFormData['gender'] === 'female') echo 'selected'; ?>>Female</option>
             </select><br>
             <label for="EditStatus">Status:</label>
             <select name="EditStatus" id="EditStatus" class="line-input" required>
@@ -288,6 +293,7 @@ $brgyDesc = getBrgyDesc($brgyCode);
         }
         
     </script>
+    <script src="./js/profile.js"></script>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 </main>
 </body>

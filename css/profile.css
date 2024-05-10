@@ -127,14 +127,17 @@ nav ul li a:hover {
     transform: translateZ(5px); /* Move menu item forward on hover */
 }
 .container {
-    margin-top: 50px;
-  max-width: 600px;
+  margin-right: 1000px;
+  margin-top: 80px;
+  max-width: 740px;
   border: 1px  solid black; /* Set border style and width */
   padding: 20px;
   border-radius: 10px;
   background-color: #ccc;
 }
-
+.required {
+  color: red;
+}
 
 h2 {
   text-align: left;

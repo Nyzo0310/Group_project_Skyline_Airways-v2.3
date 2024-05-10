@@ -94,7 +94,7 @@
                 <option value="" disabled selected>-- SELECT CITY / MUNICIPALITY --</option>
                 <!-- PHP code for cities/municipalities -->
             </select>
-            <label1>Barangay : <b style="color: red">*</b></b></label1>
+            <label1>Barangay : <b style="color: red">*</b> </b></label1>
             <select name="inp_brgy" id="inp_brgy" required class="form-control mt-2">
                 <option value="" disabled selected>-- SELECT BARANGAY --</option>
                 <!-- PHP code for barangays -->
