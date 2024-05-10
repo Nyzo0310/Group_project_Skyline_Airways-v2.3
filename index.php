@@ -36,6 +36,7 @@ $destination = isset($_GET['destination']) ? htmlspecialchars($_GET['destination
                   echo '<button class="dropbtn">Hello, ' . $_SESSION['username'] . '</button>';
                   echo '<div class="dropdown-content">';
                   echo '<a href="profile.php">Profile</a>';
+                  echo '<a href="inbox.php">Inbox</a>';
                   echo '<a href="logout.php" class="logout">Logout</a>';
                   echo '</div>';
                   echo '</div>';

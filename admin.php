@@ -189,7 +189,7 @@
                     <td><?= $main_passenger_data['accommodation'] ?></td>
                     <td>₱ <?= $main_passenger_data['total_price'] ?></td>
                     <td class="btn-td">
-                        <button class="btn update-btn">Confirm</button>
+                        <button class="btn update-btn" onclick="confirmBooking(<?php echo $main_passenger_data['MainPassenger']; ?>)">Confirm</button>
                         <button class="btn view-btn" data-main-passenger="<?= htmlspecialchars(json_encode($main_passenger_data), ENT_QUOTES, 'UTF-8') ?>">View</button>
                         <button class="btn delete-btn">Decline</button>
                     </td>
@@ -281,6 +281,5 @@
         src="./js/adminfunct.js">
     </script>
     <script src="./assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-    
 </body>
 </html>

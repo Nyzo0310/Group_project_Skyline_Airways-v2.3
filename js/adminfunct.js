@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // Send data to PHP script using AJAX
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "./models/con_book.php", true); // Adjust the path to your PHP file
+            xhr.open("POST", "../model/con_book.php", true); // Adjust the path to your PHP file
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
@@ -116,4 +116,19 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
+function confirmBooking(mainPassengerId) {
+    // Send the main passenger ID to inbox.php using AJAX
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "../inbox.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // Handle the response from inbox.php if needed
+            console.log(xhr.responseText);
+        }
+    };
+    xhr.send("mainPassengerId=" + mainPassengerId);
+}
+
 
