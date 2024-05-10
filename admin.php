@@ -37,6 +37,16 @@
                 // If the user is not logged in, display a login link
                 echo '<li><a href="login.php">Login</a></li>';
             }
+            function checkLoggedIn() {
+                if (!isset($_SESSION['username'])) {
+                    header("Location: login.php"); // Redirect to the login page
+                    exit(); // Stop script execution
+                }
+            }
+            
+            // Call this function at the beginning of any page where you want to restrict access
+            checkLoggedIn();
+            ?>
             ?> 
         </ul>  
     </nav>
