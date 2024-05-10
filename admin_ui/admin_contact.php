@@ -7,6 +7,7 @@
     <title>Contact</title>
     <link rel="stylesheet" href="../css/admin_ui_css/contact.css">
     <link rel="icon" href="../assets/images/favicon.jpg">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css" >
 </head>
 <body>
 <header class="header1">
@@ -44,6 +45,9 @@
         <img class="anal-logo" src="/assets/images/contact-us.png" alt="">
         <h1 class="h1-anal">CONTACT</h1>
     </div>
+
+    
 </main>
+<script src="./assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

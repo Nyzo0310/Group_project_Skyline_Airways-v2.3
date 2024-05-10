@@ -106,222 +106,226 @@
 </header>
 
 <main>
-<div class="container">
-    <div class="profile-info-left">
-        <?php
-        // Check if user is logged in
-        if(isset($_SESSION['username'])) {
-            // Database connection
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $database_name = "flightbooking";
+<div class="main_ff">
+    <div class="container">
+        <div class="profile-info-left">
+            <?php
+            // Check if user is logged in
+            if(isset($_SESSION['username'])) {
+                // Database connection
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $database_name = "flightbooking";
 
-            // Create connection
-            $conn = new mysqli($servername, $username, $password, $database_name);
+                // Create connection
+                $conn = new mysqli($servername, $username, $password, $database_name);
 
-            // Check connection
-            if ($conn->connect_error) {
-                die("Connection failed: " . $conn->connect_error);
-            }
-
-            // Retrieve email of logged-in user from session
-            $email = $_SESSION['username'];
-
-            // Query to retrieve user information based on email
-            $sql = "SELECT reg_firstname, reg_lastname, reg_email, reg_region, reg_province, reg_city, reg_barangay, reg_idUpload FROM logindata WHERE reg_email = ?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("s", $email);
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            if ($result->num_rows > 0) {
-                // Output data of each row
-                while($row = $result->fetch_assoc()) {
-                    // Display profile header
-                    echo '<h1>';
-                    echo '<img src="./assets/images/user.png" alt="Flaticon Icon" class="flaticon-icon">';
-                    echo 'My Profile';
-                    echo '</h1>';
-                    // Display profile info
-                    echo '<div class="profile-info">';
-                    echo '<p><strong class="strong_font">Name :</strong> <input type="text" value="' . $row["reg_firstname"] . ' ' . $row["reg_lastname"] . '" class="line-input" readonly></p>';
-                    echo '<p><strong class="strong_font">Email :</strong> <input type="text" value="' . $row["reg_email"] . '" class="line-input" readonly></p>';
-                    // Retrieve and display region description
-                    $regionCode = $row["reg_region"];
-                    $regionDesc = getRegionDesc($regionCode);
-                    echo '<p><strong class="strong_font">Region :</strong> <input type="text" value="' . $regionDesc . '" class="line-input" readonly></p>';
-                    // Retrieve and display province description
-                    $provinceCode = $row["reg_province"];
-                    $provinceDesc = getProvinceDesc($provinceCode);
-                    echo '<p><strong class="strong_font">Province :</strong> <input type="text" value="' . $provinceDesc . '" class="line-input" readonly></p>';
-                    // Retrieve and display city/municipality description
-                    $citymunCode = $row["reg_city"];
-                    $citymunDesc = getCitymunDesc($citymunCode);
-                    echo '<p><strong class="strong_font">Municipality:</strong> <input type="text" value="' . $citymunDesc . '" class="line-input" readonly></p>';
-                    // Retrieve and display barangay description
-                    $brgyCode = $row["reg_barangay"];
-                    $brgyDesc = getBrgyDesc($brgyCode);
-                    echo '<p><strong class="strong_font">Barangay :</strong> <input type="text" value="' . $brgyDesc . '" class="line-input" readonly></p>';
-                    echo '<label class="profile-picture-label">ID Picture :</label>';
-                    echo '</div>';
-
-                    // Display profile picture container
-                    echo '<div id="profile-picture-container" class="profile-picture-container">';
-                    echo '<img src="data:image/jpeg;base64,'.base64_encode($row['reg_idUpload']).'" alt="Profile Picture" id="profile-picture" class="profile-picture">';
-                    echo '</div>';
+                // Check connection
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
                 }
+
+                // Retrieve email of logged-in user from session
+                $email = $_SESSION['username'];
+
+                // Query to retrieve user information based on email
+                $sql = "SELECT reg_firstname, reg_lastname, reg_email, reg_region, reg_province, reg_city, reg_barangay, reg_idUpload FROM logindata WHERE reg_email = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("s", $email);
+                $stmt->execute();
+                $result = $stmt->get_result();
+
+                if ($result->num_rows > 0) {
+                    // Output data of each row
+                    while($row = $result->fetch_assoc()) {
+                        // Display profile header
+                        echo '<h1>';
+                        echo '<img src="./assets/images/user.png" alt="Flaticon Icon" class="flaticon-icon">';
+                        echo 'My Profile';
+                        echo '</h1>';
+                        // Display profile info
+                        echo '<div class="profile-info">';
+                        echo '<p><strong class="strong_font">Name :</strong> <input type="text" value="' . $row["reg_firstname"] . ' ' . $row["reg_lastname"] . '" class="line-input" readonly></p>';
+                        echo '<p><strong class="strong_font">Email :</strong> <input type="text" value="' . $row["reg_email"] . '" class="line-input" readonly></p>';
+                        // Retrieve and display region description
+                        $regionCode = $row["reg_region"];
+                        $regionDesc = getRegionDesc($regionCode);
+                        echo '<p><strong class="strong_font">Region :</strong> <input type="text" value="' . $regionDesc . '" class="line-input" readonly></p>';
+                        // Retrieve and display province description
+                        $provinceCode = $row["reg_province"];
+                        $provinceDesc = getProvinceDesc($provinceCode);
+                        echo '<p><strong class="strong_font">Province :</strong> <input type="text" value="' . $provinceDesc . '" class="line-input" readonly></p>';
+                        // Retrieve and display city/municipality description
+                        $citymunCode = $row["reg_city"];
+                        $citymunDesc = getCitymunDesc($citymunCode);
+                        echo '<p><strong class="strong_font">Municipality:</strong> <input type="text" value="' . $citymunDesc . '" class="line-input" readonly></p>';
+                        // Retrieve and display barangay description
+                        $brgyCode = $row["reg_barangay"];
+                        $brgyDesc = getBrgyDesc($brgyCode);
+                        echo '<p><strong class="strong_font">Barangay :</strong> <input type="text" value="' . $brgyDesc . '" class="line-input" readonly></p>';
+                        echo '<label class="profile-picture-label">ID Picture :</label>';
+                        echo '</div>';
+
+                        // Display profile picture container
+                        echo '<div id="profile-picture-container" class="profile-picture-container">';
+                        echo '<img src="data:image/jpeg;base64,'.base64_encode($row['reg_idUpload']).'" alt="Profile Picture" id="profile-picture" class="profile-picture">';
+                        echo '</div>';
+                    }
+                } else {
+                    echo "0 results";
+                }
+
+                $stmt->close();
+                $conn->close();
             } else {
-                echo "0 results";
+                // Redirect if user is not logged in
+                header("Location: login.php");
+                exit();
             }
 
-            $stmt->close();
-            $conn->close();
-        } else {
-            // Redirect if user is not logged in
-            header("Location: login.php");
-            exit();
-        }
+            // Function to retrieve region description
+            function getRegionDesc($regionCode) {
+                global $conn;
+                $sql = "SELECT regDesc FROM ph_region WHERE regCode = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("s", $regionCode);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $row = $result->fetch_assoc();
+                return $row["regDesc"];
+            }
 
-        // Function to retrieve region description
-        function getRegionDesc($regionCode) {
-            global $conn;
-            $sql = "SELECT regDesc FROM ph_region WHERE regCode = ?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("s", $regionCode);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $row = $result->fetch_assoc();
-            return $row["regDesc"];
-        }
+            // Function to retrieve province description
+            function getProvinceDesc($provinceCode) {
+                global $conn;
+                $sql = "SELECT provDesc FROM ph_province WHERE provCode = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("s", $provinceCode);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $row = $result->fetch_assoc();
+                return $row["provDesc"];
+            }
 
-        // Function to retrieve province description
-        function getProvinceDesc($provinceCode) {
-            global $conn;
-            $sql = "SELECT provDesc FROM ph_province WHERE provCode = ?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("s", $provinceCode);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $row = $result->fetch_assoc();
-            return $row["provDesc"];
-        }
+            // Function to retrieve city/municipality description
+            function getCitymunDesc($citymunCode) {
+                global $conn;
+                $sql = "SELECT citymunDesc FROM ph_citymun WHERE citymunCode = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("s", $citymunCode);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $row = $result->fetch_assoc();
+                return $row["citymunDesc"];
+            }
 
-        // Function to retrieve city/municipality description
-        function getCitymunDesc($citymunCode) {
-            global $conn;
-            $sql = "SELECT citymunDesc FROM ph_citymun WHERE citymunCode = ?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("s", $citymunCode);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $row = $result->fetch_assoc();
-            return $row["citymunDesc"];
-        }
+            // Function to retrieve barangay description
+            function getBrgyDesc($brgyCode) {
+                global $conn;
+                $sql = "SELECT brgyDesc FROM ph_brgy WHERE brgyCode = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("s", $brgyCode);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $row = $result->fetch_assoc();
+                return $row["brgyDesc"];
+            }
+            ?>
+        </div>
 
-        // Function to retrieve barangay description
-        function getBrgyDesc($brgyCode) {
-            global $conn;
-            $sql = "SELECT brgyDesc FROM ph_brgy WHERE brgyCode = ?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("s", $brgyCode);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            $row = $result->fetch_assoc();
-            return $row["brgyDesc"];
-        }
-        ?>
+        <div class="profile-info-right">
+            <!-- Profile update form -->
+            <form id="profile-update-form" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <div>
+                    <!-- Input fields for gender, date of birth, age, status, phone, and nationality -->
+                    <!-- PHP echo used for value attributes to retain previously entered values -->
+                    <!-- Add your PHP code here for retrieving previously entered values, if available -->
+                    <?php
+                    // Retrieve saved form data from session, if available
+                    $savedFormData = isset($_SESSION['form_data']) ? $_SESSION['form_data'] : [];
+
+                    // Display profile info (Gender, Date of Birth, Age, Status, Phone Number, and Nationality)
+                    echo '<div class="profile-info">';
+                    echo '<p><strong class="strong_font">Gender :</strong> 
+                    <select name="gender" class="line-input" required>';
+                    echo '<option value="">Select Gender</option>';
+                    echo '<option value="male"'; 
+                    if (isset($savedFormData['gender']) && $savedFormData['gender'] === 'male') echo ' selected';
+                    echo '>Male</option>';
+                    echo '<option value="female"';
+                    if (isset($savedFormData['gender']) && $savedFormData['gender'] === 'female') echo ' selected';
+                    echo '>Female</option>';
+                    echo '</select>
+                    </p>';
+
+                    echo '<p><strong class="strong_font">Date of Birth :</strong> 
+                    <input type="date" name="dob" class="line-input" value="' . htmlspecialchars($savedFormData['dob'] ?? '') . '" required>
+                    </p>';
+
+                    echo '<p><strong class="strong_font">Age :</strong> <input type="text" name="age" class="line-input" placeholder="Please enter your age" value="' . htmlspecialchars($savedFormData['age'] ?? '') . '"></p>';
+                    echo '<p><strong class="strong_font">Status :</strong> 
+                    <select name="status" class="line-input" required>';
+                    echo '<option value="">Select Status</option>';
+                    $statuses = array("Married", "Single", "Divorced", "Widowed", "Separated", "In a relationship", "It\'s Complicated");
+                    foreach ($statuses as $option) {
+                        echo '<option value="' . $option . '"';
+                        if (isset($savedFormData['status']) && $savedFormData['status'] === $option) echo ' selected';
+                        echo '>' . $option . '</option>';
+                    }
+                    echo '</select>
+                    </p>';
+
+                    echo '<p><strong class="strong_font">Phone Number :</strong> <input type="text" name="phone" class="line-input" placeholder="Please enter your phone number" value="' . htmlspecialchars($savedFormData['phone'] ?? '') . '"></p>';
+                    echo '<p><strong class="strong_font">Nationality:</strong> 
+                    <select name="nationality" class="line-input" required>';
+                    echo '<option value="">Select Nationality</option>';
+                    $nationalities = array("Filipino", "Filipino-American", "Filipino-British", "Filipino-Canadian", "Dual Citizen (Filipino and another nationality)", "Other");
+                    foreach ($nationalities as $option) {
+                        echo '<option value="' . $option . '"';
+                        if (isset($savedFormData['nationality']) && $savedFormData['nationality'] === $option) echo ' selected';
+                        echo '>' . $option . '</option>';
+                    }
+                    echo '</select>
+                    </p>';
+
+                    echo '</div>';
+                    ?>
+
+                </div>
+
+                <!-- Add edit profile button here -->
+                <div class="button-container">
+                    <button type="button" class="edit-profile-button">Edit Profile</button>
+                    <button type="submit" class="save-profile-button">Save Profile</button>
+                </div>
+
+                <!-- Display success message if it's not empty -->
+                <?php if (!empty($successMessage)) : ?>
+                    <div id="success-notification" class="success-message"><?php echo $successMessage; ?></div>
+                <?php endif; ?>
+
+                <script>
+                    // Function to show success notification and hide it after 3 seconds
+                    function showSuccessNotification() {
+                        var successNotification = document.getElementById('success-notification');
+                        successNotification.classList.remove('hidden');
+                        setTimeout(function() {
+                            successNotification.classList.add('hidden');
+                        }, 3000); // 3000 milliseconds = 3 seconds
+                    }
+
+                    // After form submission, show success notification
+                    document.getElementById('profile-update-form').addEventListener('submit', function() {
+                        showSuccessNotification();
+                    });
+                </script>
+
+            </form>
+        </div>
     </div>
 
-    <div class="profile-info-right">
-        <!-- Profile update form -->
-        <form id="profile-update-form" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-            <div>
-                <!-- Input fields for gender, date of birth, age, status, phone, and nationality -->
-                <!-- PHP echo used for value attributes to retain previously entered values -->
-                <!-- Add your PHP code here for retrieving previously entered values, if available -->
-                <?php
-                // Retrieve saved form data from session, if available
-                $savedFormData = isset($_SESSION['form_data']) ? $_SESSION['form_data'] : [];
-
-                // Display profile info (Gender, Date of Birth, Age, Status, Phone Number, and Nationality)
-                echo '<div class="profile-info">';
-                echo '<p><strong class="strong_font">Gender :</strong> 
-                <select name="gender" class="line-input" required>';
-                echo '<option value="">Select Gender</option>';
-                echo '<option value="male"'; 
-                if (isset($savedFormData['gender']) && $savedFormData['gender'] === 'male') echo ' selected';
-                echo '>Male</option>';
-                echo '<option value="female"';
-                if (isset($savedFormData['gender']) && $savedFormData['gender'] === 'female') echo ' selected';
-                echo '>Female</option>';
-                echo '</select>
-                </p>';
-
-                echo '<p><strong class="strong_font">Date of Birth :</strong> 
-                <input type="date" name="dob" class="line-input" value="' . htmlspecialchars($savedFormData['dob'] ?? '') . '" required>
-                </p>';
-
-                echo '<p><strong class="strong_font">Age :</strong> <input type="text" name="age" class="line-input" placeholder="Please enter your age" value="' . htmlspecialchars($savedFormData['age'] ?? '') . '"></p>';
-                echo '<p><strong class="strong_font">Status :</strong> 
-                <select name="status" class="line-input" required>';
-                echo '<option value="">Select Status</option>';
-                $statuses = array("Married", "Single", "Divorced", "Widowed", "Separated", "In a relationship", "It\'s Complicated");
-                foreach ($statuses as $option) {
-                    echo '<option value="' . $option . '"';
-                    if (isset($savedFormData['status']) && $savedFormData['status'] === $option) echo ' selected';
-                    echo '>' . $option . '</option>';
-                }
-                echo '</select>
-                </p>';
-
-                echo '<p><strong class="strong_font">Phone Number :</strong> <input type="text" name="phone" class="line-input" placeholder="Please enter your phone number" value="' . htmlspecialchars($savedFormData['phone'] ?? '') . '"></p>';
-                echo '<p><strong class="strong_font">Nationality:</strong> 
-                <select name="nationality" class="line-input" required>';
-                echo '<option value="">Select Nationality</option>';
-                $nationalities = array("Filipino", "Filipino-American", "Filipino-British", "Filipino-Canadian", "Dual Citizen (Filipino and another nationality)", "Other");
-                foreach ($nationalities as $option) {
-                    echo '<option value="' . $option . '"';
-                    if (isset($savedFormData['nationality']) && $savedFormData['nationality'] === $option) echo ' selected';
-                    echo '>' . $option . '</option>';
-                }
-                echo '</select>
-                </p>';
-
-                echo '</div>';
-                ?>
-
-            </div>
-
-            <!-- Add edit profile button here -->
-            <div class="button-container">
-                <button type="button" class="edit-profile-button">Edit Profile</button>
-                <button type="submit" class="save-profile-button">Save Profile</button>
-            </div>
-
-            <!-- Display success message if it's not empty -->
-            <?php if (!empty($successMessage)) : ?>
-                <div id="success-notification" class="success-message"><?php echo $successMessage; ?></div>
-            <?php endif; ?>
-
-            <script>
-                // Function to show success notification and hide it after 3 seconds
-                function showSuccessNotification() {
-                    var successNotification = document.getElementById('success-notification');
-                    successNotification.classList.remove('hidden');
-                    setTimeout(function() {
-                        successNotification.classList.add('hidden');
-                    }, 3000); // 3000 milliseconds = 3 seconds
-                }
-
-                // After form submission, show success notification
-                document.getElementById('profile-update-form').addEventListener('submit', function() {
-                    showSuccessNotification();
-                });
-            </script>
-
-        </form>
-    </div>
+    
 </div>
 </main>
 

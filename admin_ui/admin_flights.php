@@ -7,6 +7,7 @@
     <title>Flights</title>
     <link rel="stylesheet" href="../css/admin_ui_css/flight.css">
     <link rel="icon" href="../assets/images/favicon.jpg">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css" >
 </head>
 <body>
 <header class="header1">
@@ -46,4 +47,5 @@
     </div>
 </main>
 </body>
+<script src="../assets/bootstrap/js/bootstrap.bundle.min.js"></script>
 </html>

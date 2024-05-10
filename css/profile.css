@@ -27,6 +27,7 @@ body {
     height: 100%;
     z-index: -1; /* Place the pseudo-element behind other content */
   }
+
 .button-container {
     text-align: center;
     margin-top: 20px;
@@ -357,4 +358,15 @@ main {
 }
 .hidden {
     display: none;
+}
+
+.profile2 {
+    background-color: white;
+    margin-left: 20px
+}
+
+.main_ff {
+    display: flex;
+    flex-direction: row;
+    flex: 1fr 1fr;
 }
