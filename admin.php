@@ -7,10 +7,10 @@
     <title>Skyline - Admin Dashboard</title>
     <link rel="icon" href="./assets/images/favicon.jpg">
     <link rel="stylesheet" href="./css/admin_dasboard.css">
-    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css" >
+    <link href="./assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     
 </head>
-<body>
+<body style="background-color: #b9b4b4;">
 <header class="header1">
     <div class="logo">
         <img src="./assets/images/logo.jpg" alt="Airline Logo">
@@ -144,6 +144,8 @@
         </div>
     </div>
 </div>
+
+
 <div class="main-container">
     
     <?php
@@ -155,7 +157,7 @@
     $result_main_passenger = $stmt_get_main_passenger->get_result();
 
     ?>
-    <h2>Main Passenger Data</h2>
+    
     <?php
     // Check if there are no main passengers
     if ($result_main_passenger->num_rows === 0) {
@@ -164,7 +166,9 @@
     <?php
     } else {
     ?>
-        <table>
+    <div class="card-header mt-4"><h2 class="mainpass">Main Passenger Data</h2></div>
+    <div class="card-body">
+        <table class="table table-bordered table-hover custom-table">
             <tr>
                 <th>Main Passenger ID</th>
                 <th>First Name</th>
@@ -189,15 +193,21 @@
                     <td><?= $main_passenger_data['accommodation'] ?></td>
                     <td>₱ <?= $main_passenger_data['total_price'] ?></td>
                     <td class="btn-td">
-                        <button class="btn update-btn" onclick="confirmBooking(<?php echo $main_passenger_data['MainPassenger']; ?>)">Confirm</button>
-                        <button class="btn view-btn" data-main-passenger="<?= htmlspecialchars(json_encode($main_passenger_data), ENT_QUOTES, 'UTF-8') ?>">View</button>
-                        <button class="btn delete-btn">Decline</button>
+                    <form method="post" action="./model/con_book.php">
+                        <!-- Hidden input field to pass the ID -->
+                        <input type="hidden" name="passenger_id" value="<?= $main_passenger_data['MainPassenger'] ?>">
+                        <button type="submit" class="btn btn-outline-success" name="update-btn">Confirm</button>
+                    </form>
+
+                        <button class="btn btn-outline-primary view-btn" data-main-passenger="<?= htmlspecialchars(json_encode($main_passenger_data), ENT_QUOTES, 'UTF-8') ?>">View</button>
+                        <button class="btn btn-outline-danger delete-btn">Decline</button>
                     </td>
                 </tr>
             <?php
             }
             ?>
         </table>
+    </div>
     <?php
     }
 
@@ -207,7 +217,6 @@
     $result_other_passengers = $stmt_get_other_passengers->get_result();
 
     ?>
-    <h2>Other Passengers Data</h2>
     <?php
     // Check if there are no other passengers
     if ($result_other_passengers->num_rows === 0) {
@@ -216,7 +225,9 @@
     <?php
     } else {
     ?>
-        <table>
+    <div class="card-header"><h2 class="otherpass">Other Passenger Data</h2></div>
+    <div class="card-body">
+        <table class="table table-bordered table-hover">
             <tr>
                 <th>Other Passenger ID</th>
                 <th>First Name</th>
@@ -239,15 +250,21 @@
                     <td><?= $row['seat'] ?></td>
                     <td><?= $row['accommodation'] ?></td>
                     <td class="btn-td">
-                        <button class="btn update-btn">Confirm</button>
-                        <button class="btn view-btn">View</button>
-                        <button class="btn delete-btn">Decline</button>
+                        <button class="btn btn-outline-success update-btn">Confirm</button>
+                        <button class="btn btn-outline-primary view-btn">View</button>
+                        <button class="btn btn-outline-danger delete-btn">Decline</button>
                     </td>
                 </tr>
             <?php
             }
             ?>
         </table>
+    </div>
+        <div class="card-footer">
+            <p >
+                <center style="font-size: 20px; font-weight:bold; ">Skyline Airways &reg;</center>
+            </p>
+        </div>
     <?php
     }
     ?>
@@ -281,5 +298,7 @@
         src="./js/adminfunct.js">
     </script>
     <script src="./assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+    crossorigin="anonymous"></script>
 </body>
 </html>

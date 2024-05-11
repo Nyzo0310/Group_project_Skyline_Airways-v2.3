@@ -30,17 +30,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
     
-    // Add click event listener to update buttons
-    var updateButtons = document.querySelectorAll('.update-btn');
-    updateButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            // Get the parent row of the clicked button
-            var parentRow = this.closest('tr');
-            
-            // Implement update functionality here
-            console.log('Update button clicked for row:', parentRow);
-        });
-    });
     
     // Add click event listener to delete buttons
     var deleteButtons = document.querySelectorAll('.delete-btn');
@@ -56,12 +45,29 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
     });
+    });
+
+
+// Add click event listener to delete buttons
+var deleteButtons = document.querySelectorAll('.delete-btn');
+deleteButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+        // Get the parent row of the clicked button
+        var parentRow = this.closest('tr');
+        
+        // Ask for confirmation before deleting
+        if (confirm("Are you sure you want to delete?")) {
+            // Remove the parent row from the DOM
+            parentRow.remove();
+        }
+    });
 });
 
 
 
+
 document.addEventListener("DOMContentLoaded", function() {
-    var confirmButtons = document.querySelectorAll('.update-btn');
+    var confirmButtons = document.querySelectorAll('.btn-outline-success'); // Updated to target the correct class name
 
     confirmButtons.forEach(function(button) {
         button.addEventListener('click', function() {
@@ -92,6 +98,7 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
 
 
 document.addEventListener("DOMContentLoaded", function() {

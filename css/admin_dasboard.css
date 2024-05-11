@@ -40,11 +40,12 @@ body{
   height:100px;
   width: 100px;
   margin-right: 10px;
-  margin-top: -20px;
+  margin-top: -25px;
  
 }
 
 .h1-anal {
+  font-size: 100px;
   cursor: pointer;
   font-family: monospace;
   text-shadow: 
@@ -117,14 +118,20 @@ body{
   align-items: center;
 }
 
-table {
+.table1, .table2 {
+    border: solid black 2px;
     border-collapse: collapse;
     width: 100%;
     margin-top: 20px; /* Add margin to separate tables from header */
 }
 
+.custom-table {
+  border: 2px solid black; /* or any other color you prefer */
+}
+
+
 th, td {
-  border: 1px solid #ddd;
+  border: 1px solid #030303;
   padding: 8px;
   font-size: 20px;
   text-align: left;
@@ -138,9 +145,14 @@ td.btn-td {
   
 }
 
+.mainpass, .otherpass {
+  text-align: center;
+  font-weight: bold;
+}
+
 th {
   
-  background-color: #f2f2f2;
+  background-color: #222020;
 }
 
 tr:hover {
@@ -148,7 +160,7 @@ tr:hover {
 }
 
 .btn {
-  color: white;
+  color: rgb(121, 118, 118);
   padding: 8px 12px;
   border: none;
   border-radius: 4px;
@@ -160,7 +172,7 @@ tr:hover {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-weight: bold;
   font-size: 20px;
-  background-color: #59f046;
+ 
 }
 .update-btn:hover {
   background-color: #45a049;
@@ -169,7 +181,7 @@ tr:hover {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-weight: bold;
   font-size: 20px;
-  background-color: #682eee;
+  
 }
 .view-btn:hover {
   background-color: #3b04b9;
@@ -179,7 +191,6 @@ tr:hover {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-weight: bold;
   font-size: 20px;
-  background-color: #f44336;
 }
 
 .delete-btn:hover {
@@ -187,46 +198,7 @@ tr:hover {
 }
 
 
-/* Main Passenger and Other Passenger Tables */
-.main-passenger-table,
-.other-passenger-table {
-    width: 80%;
-    margin: 20px auto; /* Center the tables horizontally */
-    border-collapse: collapse;
-}
 
-/* Style for table headers and cells */
-.main-passenger-table th,
-.main-passenger-table td,
-.other-passenger-table th,
-.other-passenger-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-}
-
-/* Style for table headers */
-.main-passenger-table th,
-.other-passenger-table th {
-    background-color: #f2f2f2;
-}
-
-/* Style for table rows on hover */
-.main-passenger-table tr:hover,
-.other-passenger-table tr:hover {
-    background-color: #f5f5f5;
-}
-
-/* Positioning the tables at the bottom */
-.main-passenger-table {
-    position: absolute;
-    bottom: 20px; /* Align the main passenger table to the bottom of the page */
-}
-
-.other-passenger-table {
-    position: absolute;
-    bottom: 60px; /* Align the other passenger table above the main passenger table */
-}
 .main-container {
     background-color: white;
     margin-left: 20px;
