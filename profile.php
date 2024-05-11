@@ -110,36 +110,38 @@ $brgyDesc = getBrgyDesc($brgyCode);
 
 <main>
 <div class="container">
-        <h2>Profile Information</h2>
+    <h2 class="container_title"><img src="./assets/images/user (1).png" alt="User Icon" class="icon-img"> Profile Information</h2>
+    <!-- Add ID Picture section here -->
+    <label for="idimg">ID Picture:</label>
+    <div for="idimg" class="ID">
+        <input type="image" name="idimg" id="idimg" src="data:image/jpeg;base64,<?php echo base64_encode($image_blob); ?>" alt="ID Picture"><br>
+    </div>
         <form>
             <div class="grid">
-            <label for="idimg">ID Picture</label>
-                <div class="ID">
-                <input type="image" name="idimg" id="idimg" src="data:image/jpeg;base64,<?php echo base64_encode($image_blob); ?>" alt="ID Picture"><br>
-            </div>
-      <div>
+        <div>
         <label for="Firstname">Name:</label>
         <input type="text" name="Firstname" id="Firstname" value="<?php echo $row['reg_firstname']; echo' ';  echo $row['reg_lastname'];?>" readonly>
-        <label for="BDate">Birth Date</label>
-        <input type="date" name="BDate" id="BDate" value="<?php echo $row['dob']; ?>" readonly>
+        <label for="BDate">Birth Date:  <b id="birthdateAsterisk" style="display: none;" class="required">*</b></label>
+            <input type="date" name="BDate" id="BDate" value="<?php echo $row['dob']; ?>" readonly>
+            <b id="birthdateAsterisk" style="display: none;" class="required">*</b>
         <label for="Age">Age: <b id="ageAsterisk" style="display: none;" class="required">*</b></label>
-            <input type="text" name="Age" id="Age" value="<?php echo $row['age']; ?>" readonly>
+            <input type="text" name="Age" id="Age" value="<?php echo $row['age']; ?>" readonly placeholder="Edit Profile to Enter Age">
             <b id="ageAsterisk" style="display: none;" class="required">*</b>
         <label for="Gender">Gender: <b id="genderAsterisk" style="display: none;" class="required">*</b></label>
-            <input type="text" name="Gender" id="Gender" value="<?php echo $row['gender']; ?>" readonly>
+            <input type="text" name="Gender" id="Gender" value="<?php echo $row['gender']; ?>" readonly placeholder="Edit Profile to Select Gender">
             <b id="genderAsterisk" style="display: none;" class="required">*</b>
         <label for="Status">Status: <b id="statusAsterisk" style="display: none;" class="required">*</b></label>
-            <input type="text" name="Status" id="Status" value="<?php echo $row['status']; ?>" readonly>
+            <input type="text" name="Status" id="Status" value="<?php echo $row['status']; ?>" readonly placeholder="Edit Profile to Select Status">
             <b id="statusAsterisk" style="display: none;" class="required">*</b>
         <label for="Phonenumber">Phone Number: <b id="phoneAsterisk" style="display: none;" class="required">*</b></label>
-            <input type="text" name="Phonenumber" id="Phonenumber" value="<?php echo $row['phone']; ?>" readonly>
+            <input type="text" name="Phonenumber" id="Phonenumber" value="<?php echo $row['phone']; ?>" readonly placeholder="Edit Profile to Enter Phone Number">
             <b id="phoneAsterisk" style="display: none;" class="required">*</b>
         <label for="email">Email:</label>
         <input type="email" name="email" id="email" value="<?php echo $row['reg_email']; ?>" readonly>
       </div>
       <div class="secondcolumn">
       <label for="Nationality">Nationality: <b id="nationalityAsterisk" style="display: none;" class="required">*</b></label>
-            <input type="text" name="Nationality" id="Nationality" value="<?php echo $row['nationality']; ?>" readonly>
+            <input type="text" name="Nationality" id="Nationality" value="<?php echo $row['nationality']; ?>" readonly placeholder="Edit Profile to Select Nationality">
             <b id="nationalityAsterisk" style="display: none;" class="required">*</b>
         <label for="Region">Region</label>
         <input type="text" name="Region" id="Region" value="<?php echo $regionDesc ?>" readonly><br>
@@ -155,7 +157,9 @@ $brgyDesc = getBrgyDesc($brgyCode);
   </form>
 </div>
   <!-- Container for edit form -->
-  <div class="edit-container" style="display: none;">
+  <div class="edit-container" id="overlay">
+    <div class="edit-container-content" id="overlayContent">
+    <span class="close-btn" onclick="closeEditProfile()">&times;</span>
         <h2>Edit Profile</h2>
         <form id="editForm" action="update.php" method="POST">
             <!-- Editable inputs for profile information -->
@@ -240,59 +244,8 @@ $brgyDesc = getBrgyDesc($brgyCode);
         </form>
         <button type="submit" form="editForm">Save</button>
     </div>
-    
-    <script>
-        
-        document.getElementById('editProfileBtn').addEventListener('click', function() {
-            // Toggle visibility of the edit container
-            var editContainer = document.querySelector('.edit-container');
-            editContainer.style.display = editContainer.style.display === 'none' ? 'block' : 'none';
+  </div> 
 
-        });
-
-        function display_province(regCode) {
-            $.ajax({
-                url: './model/ph_address.php',
-                type: 'POST',
-                data: {
-                    'type': 'region',
-                    'post_code': regCode
-                },
-                success: function (response) {
-                    $('#EditProvince').html(response);
-                }
-            });
-        }
-
-        function display_citymun(provCode) {
-            $.ajax({
-                url: './model/ph_address.php',
-                type: 'POST',
-                data: {
-                    'type': 'province',
-                    'post_code': provCode
-                },
-                success: function (response) {
-                    $('#EditCitymun').html(response);
-                }
-            });
-        }
-
-        function display_brgy(citymunCode) {
-            $.ajax({
-                url: './model/ph_address.php',
-                type: 'POST',
-                data: {
-                    'type': 'citymun',
-                    'post_code': citymunCode
-                },
-                success: function (response) {
-                    $('#EditBrgy').html(response);
-                }
-            });
-        }
-        
-    </script>
     <script src="./js/profile.js"></script>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 </main>
