@@ -9,7 +9,7 @@
     <link rel="icon" href="../assets/images/favicon.jpg">
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css" >
 </head>
-<body>
+<body style="background-color: #b9b4b4;">
 <header class="header1">
     <div class="logo">
         <img src="../assets/images/logo.jpg" alt="Airline Logo">
