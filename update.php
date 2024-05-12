@@ -41,6 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         echo "Error updating record: " . $conn->error;
     }
+
 } else {
     // Redirect to the login page if form is not submitted
     header("Location: login.php");
