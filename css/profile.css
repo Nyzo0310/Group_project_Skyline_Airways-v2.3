@@ -135,16 +135,6 @@ nav ul li a:hover {
   padding: 20px;
   border-radius: 10px;
   background-color: #ccc;
-  animation: animateLeft 1.1s ease-in-out; /* Updated animation properties */
-}
-
-@keyframes animateLeft {
-  0% {
-      transform: translateX(100%);
-  }
-  100% {
-      transform: translateX(0);
-  }
 }
 
 .container label {
@@ -348,5 +338,20 @@ select:focus {
 
 .close-btn:hover {
   color: #000; /* Change color on hover */
+}
+
+.notification {
+  text-align: center;
+  max-width: 300px;
+  width: 100%;
+  display: block;
+  position: fixed; /* Change position to absolute */
+  top: 780px;
+  right: 1130px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 5px;
+  z-index: 9999;
 }
 

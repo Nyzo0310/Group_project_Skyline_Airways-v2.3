@@ -1,3 +1,4 @@
+// Function to display provinces based on selected region
 function display_province(regCode) {
     $.ajax({
         url: './model/ph_address.php',
@@ -12,6 +13,7 @@ function display_province(regCode) {
     });
 }
 
+// Function to display cities/municipalities based on selected province
 function display_citymun(provCode) {
     $.ajax({
         url: './model/ph_address.php',
@@ -26,6 +28,7 @@ function display_citymun(provCode) {
     });
 }
 
+// Function to display barangays based on selected city/municipality
 function display_brgy(citymunCode) {
     $.ajax({
         url: './model/ph_address.php',
@@ -118,3 +121,32 @@ function toggleAsterisk(value, asteriskId) {
         asterisk.style.display = 'none'; // Hide asterisk
     }
 }
+
+function showNotification(message) {
+    // Create a new notification element
+    var notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.textContent = message;
+
+    // Add the notification to the notification container
+    var container = document.getElementById('notificationContainer');
+    container.appendChild(notification);
+
+    // Set a timeout to remove the notification after a certain time
+    setTimeout(function() {
+        container.removeChild(notification);
+    }, 5000); // Remove after 5 seconds (adjust as needed)
+}
+
+// Attach event listener to the Save button in the edit container
+document.getElementById('editForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form submission
+    
+    // Your form submission logic goes here...
+
+    // Show notification for successful profile update
+    showNotification('Profile updated successfully!');
+    
+    // Close the edit container and go back to profile information
+    closeEditProfile();
+});

@@ -109,6 +109,7 @@ $brgyDesc = getBrgyDesc($brgyCode);
 </header>
 
 <main>
+    
 <div class="container">
     <h2 class="container_title"><img src="./assets/images/user (1).png" alt="User Icon" class="icon-img"> Profile Information</h2>
     <!-- Add ID Picture section here -->
@@ -151,6 +152,9 @@ $brgyDesc = getBrgyDesc($brgyCode);
         <input type="text" name="Citymun" id="Citymun" value="<?php echo $citymunDesc ?>" readonly><br>
         <label for="Brgy">Barangay</label>
         <input type="text" name="Brgy" id="Brgy" value="<?php echo $brgyDesc ?>" readonly>
+
+        <div id="notificationContainer" class="notification"></div>
+
         <button type="button" id="editProfileBtn">Edit Profile</button>
       </div>
     </div>
@@ -244,8 +248,7 @@ $brgyDesc = getBrgyDesc($brgyCode);
         </form>
         <button type="submit" form="editForm">Save</button>
     </div>
-  </div> 
-
+</div>
     <script src="./js/profile.js"></script>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 </main>
