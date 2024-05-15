@@ -15,7 +15,7 @@
     <div class="logo">
         <img src="./assets/images/logo.jpg" alt="Airline Logo">
         <div class="title">
-            <h1>Skyline Admin Page</h1>
+            <h1>Skyline Admin </h1>
         </div>
     </div>
     <nav>
@@ -47,7 +47,6 @@
             // Call this function at the beginning of any page where you want to restrict access
             checkLoggedIn();
             ?>
-            ?> 
         </ul>  
     </nav>
 </header> 
@@ -184,14 +183,14 @@
             while ($main_passenger_data = $result_main_passenger->fetch_assoc()) {
             ?>
                 <tr>
-                    <td><?= $main_passenger_data['MainPassenger'] ?></td>
+                    <td style="font-weight: bold;"><?= $main_passenger_data['MainPassenger'] ?></td>
                     <td><?= $main_passenger_data['first_name'] ?></td>
                     <td><?= $main_passenger_data['last_name'] ?></td>
                     <td><?= $main_passenger_data['email'] ?></td>
                     <td><?= $main_passenger_data['contact_number'] ?></td>
                     <td><?= $main_passenger_data['seat'] ?></td>
                     <td><?= $main_passenger_data['accommodation'] ?></td>
-                    <td>₱ <?= $main_passenger_data['total_price'] ?></td>
+                    <td style="font-weight: bold;">₱ <?= $main_passenger_data['total_price'] ?></td>
                     <td class="btn-td">
                     <form method="post" action="./model/con_book.php">
                         <!-- Hidden input field to pass the ID -->
@@ -242,7 +241,7 @@
             while ($row = $result_other_passengers->fetch_assoc()) {
             ?>
                 <tr>
-                    <td><?= $row['MainPassenger'] ?></td>
+                    <td style="font-weight: bold;"><?= $row['MainPassenger'] ?></td>
                     <td><?= $row['first_name'] ?></td>
                     <td><?= $row['last_name'] ?></td>
                     <td><?= $row['email'] ?></td>
@@ -261,8 +260,8 @@
         </table>
     </div>
         <div class="card-footer">
-            <p >
-                <center style="font-size: 20px; font-weight:bold; ">Skyline Airways &reg;</center>
+            <p>
+                <center style="font-size: 20px; font-weight:bold; ">&copy; 2024 Skyline Airways PH. All rights reserved.</center>
             </p>
         </div>
     <?php

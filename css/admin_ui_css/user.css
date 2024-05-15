@@ -104,11 +104,10 @@ body{
     font-weight: 500;
     padding: 10px 20px;
     border-radius: 5px;
-    transition: background-color 0.3s;
   }
   
   nav ul li a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    color: yellow;
     cursor: pointer;
   }
   
@@ -119,13 +118,13 @@ body{
     font-weight: bold;
     padding: 10px 20px;
     border-radius: 5px;
-    transition: background-color 0.3s;
     cursor: pointer; /* Change cursor to pointer */
   }
   
   nav .dropdown .dropbtn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    color: yellow;
   }
+  
   .dropdown {
     margin-top: -8px;
   }
@@ -138,12 +137,12 @@ body{
     border: none;
     cursor: pointer;
     font-family: 'Montserrat', sans-serif; /* Use the Montserrat font */
-    font-weight: 500; /* Adjust font weight as needed */;
+    font-weight: 500; /* Adjust font weight as needed */
     transition: background-color 0.3s;
   }
   
   .dropbtn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    color: yellow;
   }
   
   .dropdown-content {
@@ -165,13 +164,16 @@ body{
     transition: color 0.3s;
   }
   
-  .dropdown-content a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-  
   .dropdown.active .dropdown-content {
     display: block;
   }
+  
   .dropdown-content a.logout {
-    color: red; /* Color for logout link */
+    color: white; /* Color for logout link */
   }
+  
+  /* Hover effect for logout link */
+  .dropdown-content a.logout:hover {
+    color: red; /* Change text color on hover */
+  }
+  
