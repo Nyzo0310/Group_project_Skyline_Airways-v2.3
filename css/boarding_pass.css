@@ -1,0 +1,126 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.boarding-pass {
+    width: 800px;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    background-color: #1a2b57;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.header .logo img {
+    width: 60px;
+    height: auto;
+}
+
+.header .airline-name {
+    margin-right: 330px;
+}
+
+.header .airline-name h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.header .airline-name p {
+    margin: 5px 0 0;
+    font-size: 14px;
+}
+
+.boarding-pass-label {
+    text-align: right;
+}
+
+.boarding-pass-label p {
+    font-size: 18px;
+    margin: 0;
+}
+
+.passenger-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f7f7f7;
+    border-bottom: 2px dashed #ccc;
+}
+
+.passenger-info .section {
+    text-align: center;
+}
+
+.passenger-info .section p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.passenger-info .section h2 {
+    margin: 5px 0 0;
+    font-size: 20px;
+}
+
+.boarding-time {
+    text-align: center;
+    padding: 20px;
+}
+
+.boarding-time p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.boarding-time h2 {
+    margin: 5px 0 0;
+    font-size: 20px;
+}
+
+.barcode {
+    text-align: center;
+    padding: 20px;
+}
+
+.barcode img {
+    width: 300px;
+    height: auto;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f7f7f7;
+}
+
+.footer .section {
+    text-align: center;
+}
+
+.footer .section p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.footer .section h2 {
+    margin: 5px 0 0;
+    font-size: 20px;
+}
